@@ -68,8 +68,8 @@ export default function App() {
         <p className="text-sm text-neutral-400">Cargando…</p>
       ) : (
         sections.map(([section, sectionItems]) => (
-          <section key={section} className="mb-8">
-            <h2 className="mb-4 font-display text-lg font-semibold leading-tight">
+          <section key={section} className="mb-16">
+            <h2 className="mb-6 font-display text-xl font-semibold leading-tight">
               {section}
             </h2>
             <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3">

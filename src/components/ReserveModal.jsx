@@ -24,7 +24,7 @@ export default function ReserveModal({ item, onClose, onConfirm, error, isSubmit
       >
         <p className="font-display text-base font-semibold">Reservar «{item.title}»</p>
         <p className="mt-1 text-sm text-neutral-500">
-          Escribe tu nombre para que el resto sepa que ya está pillado.
+          Escribe tu nombre para que el resto sepa que ya está pillado. Esta acción no se puede deshacer.
         </p>
 
         <input
