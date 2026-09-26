@@ -1,57 +1,173 @@
 [
   {
-    "id": "los-dias-felices",
-    "title": "Los días felices",
-    "subtitle": "Zuzu",
-    "section": "La biblioteca andante",
-    "price": 24.0,
-    "buyLink": "https://www.example-bookshop.com/los-dias-felices",
-    "imageLink": ""
-  },
-  {
-    "id": "la-oruga",
-    "title": "La oruga",
-    "subtitle": "Suehiro Maruo",
-    "section": "La biblioteca andante",
-    "price": 16.1,
-    "buyLink": "https://www.example-bookshop.com/la-oruga",
-    "imageLink": ""
-  },
-  {
-    "id": "cheese",
-    "title": "Cheese",
-    "subtitle": "Zuzu",
-    "section": "La biblioteca andante",
-    "price": 18.0,
-    "buyLink": "https://www.example-bookshop.com/cheese",
-    "imageLink": ""
-  },
-  {
-    "id": "semillas-de-ansiedad-1",
-    "title": "Semillas de ansiedad. Tomo 1",
-    "subtitle": "",
-    "section": "La biblioteca andante",
-    "price": null,
-    "priceLabel": "Segunda mano",
-    "buyLink": "https://www.example-bookshop.com/semillas-de-ansiedad-1",
-    "imageLink": ""
-  },
-  {
-    "id": "brunilda-en-la-plata",
-    "title": "Brunilda en la plata",
-    "subtitle": "Genís Rigol",
-    "section": "La biblioteca andante",
-    "price": 22.9,
-    "buyLink": "https://www.example-bookshop.com/brunilda-en-la-plata",
-    "imageLink": ""
-  },
-  {
-    "id": "un-lugar-para-mungo",
-    "title": "Un lugar para Mungo",
+    "id": "john-of-john",
+    "title": "John of John",
     "subtitle": "Douglas Stuart",
-    "section": "Another section",
-    "price": 22.9,
-    "buyLink": "https://www.example-bookshop.com/un-lugar-para-mungo",
-    "imageLink": ""
+    "section": "La biblioteca andante",
+    "price": 30,
+    "buyLink": "https://www.amazon.es/John-Douglas-Stuart/dp/0802167195",
+    "imageLink": "https://m.media-amazon.com/images/I/91wnIauhuGL._SY466_.jpg"
+  },
+  {
+    "id": "effaclar",
+    "title": "Effaclar Serum Ultraconcentrado",
+    "subtitle": "La Roche Posay",
+    "section": "Noche de Spa",
+    "price": 29.95,
+    "buyLink": "https://www.druni.es/effaclar-serum-roche-posay-renovador-triple-accion",
+    "imageLink": "https://www.druni.es/media/catalog/product/5/0/5013433.jpg?quality=80&fit=bounds&height=750&width=750&canvas=750:750"
+  },
+  {
+    "id": "musk-shades",
+    "title": "Ambieentador Mikado Musk Shades",
+    "subtitle": "Zara Home",
+    "section": "Noche de Spa",
+    "price": 17.99,
+    "buyLink": "https://www.zarahome.com/es/musk-shades-l48487000306ZHMS",
+    "imageLink": "https://static.zarahome.net//assets/public/08bc/2417/3fcb4545b4ca/7e5c75c3746a/47510703306-a7/47510703306-a7.jpg?ts=1784703146581&f=auto&w=576&f=auto"
+  },
+  {
+    "id": "lush-super-milk",
+    "title": "Super Milk",
+    "subtitle": "Lush",
+    "section": "Noche de Spa",
+    "price": 18.95,
+    "buyLink": "https://www.lush.com/es/es/p/super-milk-conditioning-spray",
+    "imageLink": "https://www.lush.com/cdn-cgi/image/width=256,f=auto/https://unicorn.lush.com/media/thumbnails/products/super_milk_conditoning_primer_2021_thumbnail_256.png"
+  },
+  {
+    "id": "lush-jasmine-and-henna",
+    "title": "Jasmine and Henna",
+    "subtitle": "Lush",
+    "section": "Noche de Spa",
+    "price": 22.50,
+    "buyLink": "https://www.lush.com/es/es/p/jasmine-and-henna-hair-treatment",
+    "imageLink": "https://www.lush.com/cdn-cgi/image/width=256,f=auto/https://unicorn.lush.com/media/thumbnails/products/jasmine_and_henna_fluff_ease_hair_treatment_2020_thumbnail_256.png"
+  },
+  {
+    "id": "lush-milk-bottle",
+    "title": "Milk Bottle",
+    "subtitle": "Lush",
+    "section": "Noche de Spa",
+    "price": 11,
+    "buyLink": "https://www.lush.com/es/es/p/milk-bottle-bubble-bar",
+    "imageLink": "https://www.lush.com/cdn-cgi/image/width=256,f=auto/https://unicorn.lush.com/media/thumbnails/products/milk_bottle_bubble_bar_hello_kitty_ecom_2025_c04b7638_thumbnail_256.png"
+  },
+  {
+    "id": "zara-correa-vintage",
+    "title": "Citurón piel efecto vintage",
+    "subtitle": "Zara",
+    "section": "Fashion show",
+    "price": 29.95,
+    "buyLink": "https://www.zara.com/es/es/cinturon-piel-efecto-vintage-p06399301.html?v1=545475056&v2=2436434",
+    "imageLink": "https://static.zara.net/assets/public/f3d6/7934/23364e7fae15/dee4f2db8ec9/06399301700-a1/06399301700-a1.jpg?ts=1779287342644&w=1024"
+  },
+  {
+    "id": "cold-culture-take-off",
+    "title": "Take Off Fleece Italy",
+    "subtitle": "coldculture",
+    "section": "Fashion show",
+    "price": 145,
+    "buyLink": "https://coldcultureworldwide.com/products/take-off-fleece-italy",
+    "imageLink": "https://coldcultureworldwide.com/cdn/shop/files/take-off-fleece-italy-8852338.jpg?v=1757661779&width=1000"
+  },
+  {
+    "id": "nike-medias-blancas",
+    "title": "Medias",
+    "subtitle": "Nike (Talla 45)",
+    "section": "Fashion show",
+    "price": 15.99,
+    "buyLink": "https://www.nike.com/es/t/everyday-cushioned-calcetines-largos-de-entrenamiento-3-pares-4Pq4Hf/SX7664-100",
+    "imageLink": "https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/9773039f-77a5-4364-956c-bfd28e17ac86/U+NK+EVERYDAY+CSH+CRW+3PR+132.png"
+  },
+  {
+    "id": "nike-medias-negras",
+    "title": "Medias",
+    "subtitle": "Nike (Talla 45)",
+    "section": "Fashion show",
+    "price": 15.99,
+    "buyLink": "https://www.nike.com/es/t/everyday-cushioned-calcetines-largos-de-entrenamiento-3-pares-4Pq4Hf/SX7664-010",
+    "imageLink": "https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/55558a4c-c846-4cb8-8877-a8c4cb65ec0d/U+NK+EVERYDAY+CSH+CRW+3PR+132.png"
+  },
+  {
+    "id": "calvin-klein-boxers",
+    "title": "Boxers",
+    "subtitle": "Calvin Klein (Talla M)",
+    "section": "Fashion show",
+    "price": 44.90,
+    "buyLink": "https://www.calvinklein.es/pack-de-3-b%C3%B3xers-de-tiro-bajo-icon-cotton-stretch-lv00nb4389tm6",
+    "imageLink": "https://calvinklein-eu.scene7.com/is/image/CalvinKleinEU/LV00NB4389_TM6_main?wid=625&fmt=jpeg&qlt=95%2C1&op_sharpen=0&resMode=sharp2&op_usm=1.5%2C.5%2C0%2C0&iccEmbed=0&printRes=72"
+  },
+  {
+    "id": "adidas-pantalón",
+    "title": "Pantalón",
+    "subtitle": "Adidas (Talla M)",
+    "section": "Fashion show",
+    "price": 25,
+    "buyLink": "https://www.adidas.es/pantalon-de-entrenamiento-tiro-25-essentials-winterized/JN9470.html",
+    "imageLink": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/c3455734c82448f0ad714761adcd2f8c_9366/Pantalon_de_entrenamiento_Tiro_25_Essentials_Winterized_Negro_JN9470_21_model.jpg"
+  },
+  {
+    "id": "villanous-perfectly-wretched",
+    "title": "Villanous Perfectly Wretched",
+    "subtitle": "",
+    "section": "Let's play... Boardgames!",
+    "priceLabel": "33,74€ o 19.90€ (Wallapop)",
+    "buyLink": "https://www.amazon.es/Ravensburger-26929-Villainous-Perfectly-Recomendada/dp/B08VJG572T/ref=sr_1_7?dib=eyJ2IjoiMSJ9.L31chaBtpUfAOSTkbUy82JwDIagFMx6UjL4_ufou8RcFWrEVSsCMXbVV2qNbZlDYF7iG9AljFwk8wf-_ns8cNC5ASydiX9TIfE9hwcCfmCDeU0L5gJMYXd8x21QHEsf4IbCb759VANo1H2x5zN7IZ-0BMq3ZFQJaQBJjXs1xdgvSbyPhsPO3CebgTLg9LM28oGIxIpfy0E2iFH-TkLK9YAXcbk2cGAF3HfOJgH-pIeLhc0rgzUyR4MBwDtPJcIozBqFOMd8ugEGyk-Zk83ecM1RLejOWhITsvlAssXj_xMY.ftuS7SU5wpyzdzEZiW3p8Y-rhpAmnkMmcrQ2deSAm1s&dib_tag=se&keywords=villainous&qid=1790440009&sr=8-7",
+    "imageLink": "https://ravensburger.cloud/images/produktseiten/520x445/26929.webp"
+  },
+  {
+    "id": "villanous-despicable-plots",
+    "title": "Villanous Despicable Plots",
+    "subtitle": "",
+    "section": "Let's play... Boardgames!",
+    "priceLabel": "31,99€ o 18€ (Wallapop)",
+    "buyLink": "https://www.amazon.es/Ravensburger-Villainous-Despicable-Estrategia-Recomendada/dp/B09ZKT5NLV/ref=sr_1_2?dib=eyJ2IjoiMSJ9.L31chaBtpUfAOSTkbUy82JwDIagFMx6UjL4_ufou8RcFWrEVSsCMXbVV2qNbZlDYF7iG9AljFwk8wf-_ns8cNC5ASydiX9TIfE9hwcCfmCDeU0L5gJMYXd8x21QHEsf4IbCb759VANo1H2x5zN7IZ-0BMq3ZFQJaQBJjXs1xdgvSbyPhsPO3CebgTLg9LM28oGIxIpfy0E2iFH-TkLK9YAXcbk2cGAF3HfOJgH-pIeLhc0rgzUyR4MBwDtPJcIozBqFOMd8ugEGyk-Zk83ecM1RLejOWhITsvlAssXj_xMY.ftuS7SU5wpyzdzEZiW3p8Y-rhpAmnkMmcrQ2deSAm1s&dib_tag=se&keywords=villainous&qid=1790440009&sr=8-2",
+    "imageLink": "https://ravensburger.cloud/images/produktseiten/520x445/27280.webp"
+  },
+  {
+    "id": "hitster",
+    "title": "Hitster: El juego de los grandes éxitos",
+    "subtitle": "",
+    "section": "Let's play... Boardgames!",
+    "price": 24.99,
+    "buyLink": "https://www.elcorteingles.es/juguetes/A44562275-juego-de-mesa-hitster-el-juego-de-los-grandes-exitos-jumbo/",
+    "imageLink": "https://dam.elcorteingles.es/producto/www-001097632206534-00.jpg?impolicy=frontWeb&width=1200&shape=square"
+  },
+  {
+    "id": "hitster-bingo",
+    "title": "Hitster Bingo",
+    "subtitle": "",
+    "section": "Let's play... Boardgames!",
+    "price": 34.99,
+    "buyLink": "https://www.elcorteingles.es/juguetes/A52632929-juego-de-mesa-hitster-bingo/",
+    "imageLink": "https://dam.elcorteingles.es/producto/www-001097632206880-00.jpg?impolicy=frontWeb&width=1200&shape=square"
+  },
+  {
+    "id": "orbitals",
+    "title": "Orbitals",
+    "subtitle": "Edición física",
+    "section": "Let's play... Videogames!",
+    "price": 49.90,
+    "buyLink": "https://www.elcorteingles.es/videojuegos/A200988751-orbitals-nintendo-switch-2",
+    "imageLink": "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_992,q_auto:low/qrlbiwa8tvrknzvkjsow"
+  },
+  {
+    "id": "yakuza-0",
+    "title": "Yakuza 0 Director's Cut",
+    "subtitle": "Nintendo Switch 2",
+    "section": "Let's play... Videogames!",
+    "priceLabel": "38,90€ o 20€ (Wallapop)",
+    "buyLink": "https://www.amazon.es/Yakuza-Directors-Cut-Nintendo-Switch/dp/B0F54KFJ6K/ref=asc_df_B0F54KFJ6K?mcid=cad8a4c152e630a2a603a6a281ec2aee&tag=googshopes-21&linkCode=df0&hvadid=754071597769&hvpos=&hvnetw=g&hvrand=3791827066590936600&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9198898&hvtargid=pla-2421090613880&psc=1&hvocijid=3791827066590936600-B0F54KFJ6K-&hvexpln=0",
+    "imageLink": "https://cdn.sega.co.uk/mhc-sega/public/styles/1280/public/content/media/images/raster/yakuza0dc-vertical_cover.jpg.webp?itok=alAd1EsV"
+  },
+  {
+    "id": "maestro",
+    "title": "Maestro",
+    "subtitle": "Edición física",
+    "section": "Let's play... Videogames!",
+    "price": 34.90,
+    "buyLink": "https://www.amazon.es/MICRO%C3%8FDS-3701529517044-MAESTRO-Nintendo-Switch/dp/B0H5S3JRDN/ref=asc_df_B0H5S3JRDN?mcid=5560109666b4347881eada3634524333&tag=googshopes-21&linkCode=df0&hvadid=807190783607&hvpos=&hvnetw=g&hvrand=10598654771863800364&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9198898&hvtargid=pla-2490385667906&psc=1&hvocijid=10598654771863800364-B0H5S3JRDN-&hvexpln=0",
+    "imageLink": "https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch2/70010000129780/630f57042083c8b533a1c8b7564b447a06075a7b7a26b5b8ef83e7fb038d8956"
   }
 ]
