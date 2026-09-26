@@ -3,7 +3,7 @@
     "id": "john-of-john",
     "title": "John of John",
     "subtitle": "Douglas Stuart",
-    "section": "La biblioteca andante",
+    "section": "Rincón de lectura",
     "price": 30,
     "buyLink": "https://www.amazon.es/John-Douglas-Stuart/dp/0802167195",
     "imageLink": "https://m.media-amazon.com/images/I/91wnIauhuGL._SY466_.jpg"
@@ -19,7 +19,7 @@
   },
   {
     "id": "invictus-eau-de-toilette",
-    "title": "Invictos Eau de Toilette",
+    "title": "Invictus Eau de Toilette",
     "subtitle": "Rabanne",
     "section": "Noche de Spa",
     "price": 39.95,
@@ -63,9 +63,72 @@
     "imageLink": "https://www.lush.com/cdn-cgi/image/width=256,f=auto/https://unicorn.lush.com/media/thumbnails/products/milk_bottle_bubble_bar_hello_kitty_ecom_2025_c04b7638_thumbnail_256.png"
   },
   {
+    "id": "antifaz-seda",
+    "title": "Antifaz de Seda",
+    "subtitle": "",
+    "section": "Noche de Spa",
+    "price": 19.99,
+    "buyLink": "https://shop.mango.com/es/es/p/mujer/pijamas/antifaz-100-seda/37062917/56/00",
+    "imageLink": "https://media.mango.com/is/image/punto/37062917-56-900?wid=640"
+  },
+  {
+    "id": "cold-culture-take-off",
+    "title": "Take Off Fleece Italy",
+    "subtitle": "coldculture (Talla L)",
+    "section": "Fashion show",
+    "price": 145,
+    "buyLink": "https://coldcultureworldwide.com/products/take-off-fleece-italy",
+    "imageLink": "https://coldcultureworldwide.com/cdn/shop/files/take-off-fleece-italy-8852338.jpg?v=1757661779&width=1000"
+  },
+  {
+    "id": "salute-windy-crewneck",
+    "title": "Salute Windy Crewneck",
+    "subtitle": "Yuxus (Talla L)",
+    "section": "Fashion show",
+    "price": 49,
+    "buyLink": "https://www.yuxus.com/es/products/salute-windy-crewneck",
+    "imageLink": "https://www.yuxus.com/cdn/shop/files/SaluteWindyCrewneck_1024x1536.jpg?v=1789370975"
+  },
+  {
+    "id": "iets-frans-azul-verde",
+    "title": "Forro Polar Azul Marino y Verde",
+    "subtitle": "Iets Frans... (Talla M)",
+    "section": "Fashion show",
+    "price": 65,
+    "buyLink": "https://www.urbanoutfitters.com/es-es/shop/iets-frans-navy-green-panel-fleece",
+    "imageLink": "https://imageseu.urbndata.com/is/image/UrbanOutfittersEU/0216946850140_041_a2?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=960"
+  },
+  {
+    "id": "iets-frans-negro",
+    "title": "Forro Polar Negro",
+    "subtitle": "Iets Frans... (Talla M)",
+    "section": "Fashion show",
+    "price": 65,
+    "buyLink": "https://www.urbanoutfitters.com/es-es/shop/iets-frans-black-football-panel-fleece",
+    "imageLink": "https://imageseu.urbndata.com/is/image/UrbanOutfittersEU/0216946850144_001_a5?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=960"
+  },
+  {
+    "id": "pirate-windy-hooded-jacket",
+    "title": "Pirate Windy Hooded Jacket",
+    "subtitle": "Yuxus (Talla L)",
+    "section": "Fashion show",
+    "price": 69,
+    "buyLink": "https://www.yuxus.com/es/products/pirate-windy-hooded-jacket",
+    "imageLink": "https://www.yuxus.com/cdn/shop/files/WINDYJACKET_9e49c24e-1fcb-481a-9033-d39f39e520f6_1024x1536.webp?v=1789368173"
+  },
+  {
+    "id": "iets-frans-cuadros-cody",
+    "title": "Chaqueta de Chándal a Cuadros Cody",
+    "subtitle": "Iets Frans... (Talla M)",
+    "section": "Fashion show",
+    "price": 79,
+    "buyLink": "https://www.urbanoutfitters.com/es-es/shop/iets-frans-cody-check-track-jacket",
+    "imageLink": "https://imageseu.urbndata.com/is/image/UrbanOutfittersEU/0230920510131_009_a2?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=960"
+  },
+  {
     "id": "zara-correa-vintage",
     "title": "Citurón piel efecto vintage",
-    "subtitle": "Zara",
+    "subtitle": "Zara (Talla 90)",
     "section": "Fashion show",
     "price": 29.95,
     "buyLink": "https://www.zara.com/es/es/cinturon-piel-efecto-vintage-p06399301.html?v1=545475056&v2=2436434",
@@ -81,17 +144,17 @@
     "imageLink": "https://static.zara.net/assets/public/7f78/987b/25d548938482/a1fe66faee12/05502303808-a1/05502303808-a1.jpg?ts=1786537964579&w=1024"
   },
   {
-    "id": "cold-culture-take-off",
-    "title": "Take Off Fleece Italy",
-    "subtitle": "coldculture",
+    "id": "adidas-pantalón",
+    "title": "Pantalón de entrenamiento",
+    "subtitle": "Adidas (Talla M)",
     "section": "Fashion show",
-    "price": 145,
-    "buyLink": "https://coldcultureworldwide.com/products/take-off-fleece-italy",
-    "imageLink": "https://coldcultureworldwide.com/cdn/shop/files/take-off-fleece-italy-8852338.jpg?v=1757661779&width=1000"
+    "price": 25,
+    "buyLink": "https://www.adidas.es/pantalon-de-entrenamiento-tiro-25-essentials-winterized/JN9470.html",
+    "imageLink": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/c3455734c82448f0ad714761adcd2f8c_9366/Pantalon_de_entrenamiento_Tiro_25_Essentials_Winterized_Negro_JN9470_21_model.jpg"
   },
   {
     "id": "nike-medias-blancas",
-    "title": "Medias",
+    "title": "Medias largas blancas",
     "subtitle": "Nike (Talla 45)",
     "section": "Fashion show",
     "price": 15.99,
@@ -100,66 +163,12 @@
   },
   {
     "id": "nike-medias-negras",
-    "title": "Medias",
+    "title": "Medias largas negras",
     "subtitle": "Nike (Talla 45)",
     "section": "Fashion show",
     "price": 15.99,
     "buyLink": "https://www.nike.com/es/t/everyday-cushioned-calcetines-largos-de-entrenamiento-3-pares-4Pq4Hf/SX7664-010",
     "imageLink": "https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/55558a4c-c846-4cb8-8877-a8c4cb65ec0d/U+NK+EVERYDAY+CSH+CRW+3PR+132.png"
-  },
-  {
-    "id": "calvin-klein-boxers",
-    "title": "Boxers",
-    "subtitle": "Calvin Klein (Talla M)",
-    "section": "Fashion show",
-    "price": 44.90,
-    "buyLink": "https://www.calvinklein.es/pack-de-3-b%C3%B3xers-de-tiro-bajo-icon-cotton-stretch-lv00nb4389tm6",
-    "imageLink": "https://calvinklein-eu.scene7.com/is/image/CalvinKleinEU/LV00NB4389_TM6_main?wid=625&fmt=jpeg&qlt=95%2C1&op_sharpen=0&resMode=sharp2&op_usm=1.5%2C.5%2C0%2C0&iccEmbed=0&printRes=72"
-  },
-  {
-    "id": "adidas-pantalón",
-    "title": "Pantalón",
-    "subtitle": "Adidas (Talla M)",
-    "section": "Fashion show",
-    "price": 25,
-    "buyLink": "https://www.adidas.es/pantalon-de-entrenamiento-tiro-25-essentials-winterized/JN9470.html",
-    "imageLink": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/c3455734c82448f0ad714761adcd2f8c_9366/Pantalon_de_entrenamiento_Tiro_25_Essentials_Winterized_Negro_JN9470_21_model.jpg"
-  },
-  {
-    "id": "villanous-perfectly-wretched",
-    "title": "Villanous Perfectly Wretched",
-    "subtitle": "",
-    "section": "Let's play... Boardgames!",
-    "priceLabel": "33,74€ o 19.90€ (Wallapop)",
-    "buyLink": "https://www.amazon.es/Ravensburger-26929-Villainous-Perfectly-Recomendada/dp/B08VJG572T/ref=sr_1_7?dib=eyJ2IjoiMSJ9.L31chaBtpUfAOSTkbUy82JwDIagFMx6UjL4_ufou8RcFWrEVSsCMXbVV2qNbZlDYF7iG9AljFwk8wf-_ns8cNC5ASydiX9TIfE9hwcCfmCDeU0L5gJMYXd8x21QHEsf4IbCb759VANo1H2x5zN7IZ-0BMq3ZFQJaQBJjXs1xdgvSbyPhsPO3CebgTLg9LM28oGIxIpfy0E2iFH-TkLK9YAXcbk2cGAF3HfOJgH-pIeLhc0rgzUyR4MBwDtPJcIozBqFOMd8ugEGyk-Zk83ecM1RLejOWhITsvlAssXj_xMY.ftuS7SU5wpyzdzEZiW3p8Y-rhpAmnkMmcrQ2deSAm1s&dib_tag=se&keywords=villainous&qid=1790440009&sr=8-7",
-    "imageLink": "https://ravensburger.cloud/images/produktseiten/520x445/26929.webp"
-  },
-  {
-    "id": "villanous-despicable-plots",
-    "title": "Villanous Despicable Plots",
-    "subtitle": "",
-    "section": "Let's play... Boardgames!",
-    "priceLabel": "31,99€ o 18€ (Wallapop)",
-    "buyLink": "https://www.amazon.es/Ravensburger-Villainous-Despicable-Estrategia-Recomendada/dp/B09ZKT5NLV/ref=sr_1_2?dib=eyJ2IjoiMSJ9.L31chaBtpUfAOSTkbUy82JwDIagFMx6UjL4_ufou8RcFWrEVSsCMXbVV2qNbZlDYF7iG9AljFwk8wf-_ns8cNC5ASydiX9TIfE9hwcCfmCDeU0L5gJMYXd8x21QHEsf4IbCb759VANo1H2x5zN7IZ-0BMq3ZFQJaQBJjXs1xdgvSbyPhsPO3CebgTLg9LM28oGIxIpfy0E2iFH-TkLK9YAXcbk2cGAF3HfOJgH-pIeLhc0rgzUyR4MBwDtPJcIozBqFOMd8ugEGyk-Zk83ecM1RLejOWhITsvlAssXj_xMY.ftuS7SU5wpyzdzEZiW3p8Y-rhpAmnkMmcrQ2deSAm1s&dib_tag=se&keywords=villainous&qid=1790440009&sr=8-2",
-    "imageLink": "https://ravensburger.cloud/images/produktseiten/520x445/27280.webp"
-  },
-  {
-    "id": "hitster",
-    "title": "Hitster: El juego de los grandes éxitos",
-    "subtitle": "",
-    "section": "Let's play... Boardgames!",
-    "price": 24.99,
-    "buyLink": "https://www.elcorteingles.es/juguetes/A44562275-juego-de-mesa-hitster-el-juego-de-los-grandes-exitos-jumbo/",
-    "imageLink": "https://dam.elcorteingles.es/producto/www-001097632206534-00.jpg?impolicy=frontWeb&width=1200&shape=square"
-  },
-  {
-    "id": "hitster-bingo",
-    "title": "Hitster Bingo",
-    "subtitle": "",
-    "section": "Let's play... Boardgames!",
-    "price": 34.99,
-    "buyLink": "https://www.elcorteingles.es/juguetes/A52632929-juego-de-mesa-hitster-bingo/",
-    "imageLink": "https://dam.elcorteingles.es/producto/www-001097632206880-00.jpg?impolicy=frontWeb&width=1200&shape=square"
   },
   {
     "id": "orbitals",
@@ -180,22 +189,31 @@
     "imageLink": "https://cdn.sega.co.uk/mhc-sega/public/styles/1280/public/content/media/images/raster/yakuza0dc-vertical_cover.jpg.webp?itok=alAd1EsV"
   },
   {
-    "id": "maestro",
-    "title": "Maestro",
-    "subtitle": "Edición física",
-    "section": "Let's play... Videogames!",
-    "price": 34.90,
-    "buyLink": "https://www.amazon.es/MICRO%C3%8FDS-3701529517044-MAESTRO-Nintendo-Switch/dp/B0H5S3JRDN/ref=asc_df_B0H5S3JRDN?mcid=5560109666b4347881eada3634524333&tag=googshopes-21&linkCode=df0&hvadid=807190783607&hvpos=&hvnetw=g&hvrand=10598654771863800364&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9198898&hvtargid=pla-2490385667906&psc=1&hvocijid=10598654771863800364-B0H5S3JRDN-&hvexpln=0",
-    "imageLink": "https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch2/70010000129780/630f57042083c8b533a1c8b7564b447a06075a7b7a26b5b8ef83e7fb038d8956"
+    "id": "hitster",
+    "title": "Hitster: El juego de los grandes éxitos",
+    "subtitle": "",
+    "section": "Let's play... Boardgames!",
+    "price": 24.99,
+    "buyLink": "https://www.elcorteingles.es/juguetes/A44562275-juego-de-mesa-hitster-el-juego-de-los-grandes-exitos-jumbo/",
+    "imageLink": "https://dam.elcorteingles.es/producto/www-001097632206534-00.jpg?impolicy=frontWeb&width=1200&shape=square"
   },
   {
-    "id": "barbie-miley",
-    "title": "Muñeca Miley Cyrus",
-    "subtitle": "Barbie Signature",
-    "section": "She is Miley Cyrus",
-    "price": 69.99,
-    "buyLink": "https://www.mediamarkt.es/es/product/_muneca-mattel-barbie-signature-muneca-miley-cyrus-14-anos-181744582.html",
-    "imageLink": "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MP_181744718?x=697&y=523&format=webp&quality=60&sp=yes&strip=yes&trim=yes&ex=697&ey=523&align=center&resizesource&unsharp=0.5x0.5"
+    "id": "villanous-perfectly-wretched",
+    "title": "Villanous Perfectly Wretched",
+    "subtitle": "",
+    "section": "Let's play... Boardgames!",
+    "priceLabel": "33,74€ o 19.90€ (Wallapop)",
+    "buyLink": "https://www.amazon.es/Ravensburger-26929-Villainous-Perfectly-Recomendada/dp/B08VJG572T/ref=sr_1_7?dib=eyJ2IjoiMSJ9.L31chaBtpUfAOSTkbUy82JwDIagFMx6UjL4_ufou8RcFWrEVSsCMXbVV2qNbZlDYF7iG9AljFwk8wf-_ns8cNC5ASydiX9TIfE9hwcCfmCDeU0L5gJMYXd8x21QHEsf4IbCb759VANo1H2x5zN7IZ-0BMq3ZFQJaQBJjXs1xdgvSbyPhsPO3CebgTLg9LM28oGIxIpfy0E2iFH-TkLK9YAXcbk2cGAF3HfOJgH-pIeLhc0rgzUyR4MBwDtPJcIozBqFOMd8ugEGyk-Zk83ecM1RLejOWhITsvlAssXj_xMY.ftuS7SU5wpyzdzEZiW3p8Y-rhpAmnkMmcrQ2deSAm1s&dib_tag=se&keywords=villainous&qid=1790440009&sr=8-7",
+    "imageLink": "https://ravensburger.cloud/images/produktseiten/520x445/26929.webp"
+  },
+  {
+    "id": "villanous-despicable-plots",
+    "title": "Villanous Despicable Plots",
+    "subtitle": "",
+    "section": "Let's play... Boardgames!",
+    "priceLabel": "31,99€ o 18€ (Wallapop)",
+    "buyLink": "https://www.amazon.es/Ravensburger-Villainous-Despicable-Estrategia-Recomendada/dp/B09ZKT5NLV/ref=sr_1_2?dib=eyJ2IjoiMSJ9.L31chaBtpUfAOSTkbUy82JwDIagFMx6UjL4_ufou8RcFWrEVSsCMXbVV2qNbZlDYF7iG9AljFwk8wf-_ns8cNC5ASydiX9TIfE9hwcCfmCDeU0L5gJMYXd8x21QHEsf4IbCb759VANo1H2x5zN7IZ-0BMq3ZFQJaQBJjXs1xdgvSbyPhsPO3CebgTLg9LM28oGIxIpfy0E2iFH-TkLK9YAXcbk2cGAF3HfOJgH-pIeLhc0rgzUyR4MBwDtPJcIozBqFOMd8ugEGyk-Zk83ecM1RLejOWhITsvlAssXj_xMY.ftuS7SU5wpyzdzEZiW3p8Y-rhpAmnkMmcrQ2deSAm1s&dib_tag=se&keywords=villainous&qid=1790440009&sr=8-2",
+    "imageLink": "https://ravensburger.cloud/images/produktseiten/520x445/27280.webp"
   },
   {
     "id": "bass-presuades-cd",
