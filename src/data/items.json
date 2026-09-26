@@ -18,13 +18,13 @@
     "imageLink": "https://www.druni.es/media/catalog/product/5/0/5013433.jpg?quality=80&fit=bounds&height=750&width=750&canvas=750:750"
   },
   {
-    "id": "musk-shades",
-    "title": "Ambieentador Mikado Musk Shades",
-    "subtitle": "Zara Home",
+    "id": "invictus-eau-de-toilette",
+    "title": "Invictos Eau de Toilette",
+    "subtitle": "Rabanne",
     "section": "Noche de Spa",
-    "price": 17.99,
-    "buyLink": "https://www.zarahome.com/es/musk-shades-l48487000306ZHMS",
-    "imageLink": "https://static.zarahome.net//assets/public/08bc/2417/3fcb4545b4ca/7e5c75c3746a/47510703306-a7/47510703306-a7.jpg?ts=1784703146581&f=auto&w=576&f=auto"
+    "price": 39.95,
+    "buyLink": "https://www.druni.es/invictus-paco-rabanne-eau-toilette-hombre",
+    "imageLink": "https://www.druni.es/media/catalog/product/4/3/430.jpg?quality=80&fit=bounds&height=750&width=750&canvas=750:750"
   },
   {
     "id": "lush-super-milk",
@@ -61,6 +61,15 @@
     "price": 29.95,
     "buyLink": "https://www.zara.com/es/es/cinturon-piel-efecto-vintage-p06399301.html?v1=545475056&v2=2436434",
     "imageLink": "https://static.zara.net/assets/public/f3d6/7934/23364e7fae15/dee4f2db8ec9/06399301700-a1/06399301700-a1.jpg?ts=1779287342644&w=1024"
+  },
+  {
+    "id": "zara-anillo",
+    "title": "Anillo metálico",
+    "subtitle": "Zara",
+    "section": "Fashion show",
+    "price": 15.95,
+    "buyLink": "https://www.zara.com/es/es/anillo-metalico-efecto-superposicion-p05502303.html?v1=558394773",
+    "imageLink": "https://static.zara.net/assets/public/7f78/987b/25d548938482/a1fe66faee12/05502303808-a1/05502303808-a1.jpg?ts=1786537964579&w=1024"
   },
   {
     "id": "cold-culture-take-off",
@@ -169,5 +178,23 @@
     "price": 34.90,
     "buyLink": "https://www.amazon.es/MICRO%C3%8FDS-3701529517044-MAESTRO-Nintendo-Switch/dp/B0H5S3JRDN/ref=asc_df_B0H5S3JRDN?mcid=5560109666b4347881eada3634524333&tag=googshopes-21&linkCode=df0&hvadid=807190783607&hvpos=&hvnetw=g&hvrand=10598654771863800364&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9198898&hvtargid=pla-2490385667906&psc=1&hvocijid=10598654771863800364-B0H5S3JRDN-&hvexpln=0",
     "imageLink": "https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch2/70010000129780/630f57042083c8b533a1c8b7564b447a06075a7b7a26b5b8ef83e7fb038d8956"
+  },
+  {
+    "id": "barbie-miley",
+    "title": "Muñeca Miley Cyrus",
+    "subtitle": "Barbie Signature",
+    "section": "She is Miley Cyrus",
+    "price": 69.99,
+    "buyLink": "https://www.mediamarkt.es/es/product/_muneca-mattel-barbie-signature-muneca-miley-cyrus-14-anos-181744582.html",
+    "imageLink": "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MP_181744718?x=697&y=523&format=webp&quality=60&sp=yes&strip=yes&trim=yes&ex=697&ey=523&align=center&resizesource&unsharp=0.5x0.5"
+  },
+  {
+    "id": "bass-presuades-cd",
+    "title": "Bass Presuades CD",
+    "subtitle": "Amazon exclusive",
+    "section": "She is Miley Cyrus",
+    "price": 18.99,
+    "buyLink": "https://www.amazon.es/Bass-Persuades-Edici%C3%B3n-Exclusiva-Amazon/dp/B0HD7NJGKM/ref=sr_1_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=4ZNWVRI3LY95&dib=eyJ2IjoiMSJ9.i11kf8mjv422-PjlVFD0sJafbi5wlfxZFVShbASgnf3GjHj071QN20LucGBJIEps.GcrBkFT8hNjr1SvNfsTXohYCNaliQf_ERZbU3pKrqLc&dib_tag=se&keywords=Miley+Bass+persuades&qid=1790446626&sprefix=miley+bass+persuade%2Caps%2C99&sr=8-1",
+    "imageLink": "https://m.media-amazon.com/images/I/61RANGtb5OL._SX425_.jpg"
   }
 ]
