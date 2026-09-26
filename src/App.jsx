@@ -54,7 +54,7 @@ export default function App() {
           Lista de regalos
         </h1>
         <p className="mt-1 text-sm text-neutral-500">
-          Reserva lo que vayas a regalar para que nadie repita.
+          Reserva lo que vayas a regalar para que nadie repita. Recuerda que estas son ideas, si quieres regalar otra cosa, ¡adelante!
         </p>
         {!isSupabaseConfigured && (
           <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700">
