@@ -1,0 +1,57 @@
+[
+  {
+    "id": "los-dias-felices",
+    "title": "Los días felices",
+    "subtitle": "Zuzu",
+    "section": "La biblioteca andante",
+    "price": 24.0,
+    "buyLink": "https://www.example-bookshop.com/los-dias-felices",
+    "imageLink": ""
+  },
+  {
+    "id": "la-oruga",
+    "title": "La oruga",
+    "subtitle": "Suehiro Maruo",
+    "section": "La biblioteca andante",
+    "price": 16.1,
+    "buyLink": "https://www.example-bookshop.com/la-oruga",
+    "imageLink": ""
+  },
+  {
+    "id": "cheese",
+    "title": "Cheese",
+    "subtitle": "Zuzu",
+    "section": "La biblioteca andante",
+    "price": 18.0,
+    "buyLink": "https://www.example-bookshop.com/cheese",
+    "imageLink": ""
+  },
+  {
+    "id": "semillas-de-ansiedad-1",
+    "title": "Semillas de ansiedad. Tomo 1",
+    "subtitle": "",
+    "section": "La biblioteca andante",
+    "price": null,
+    "priceLabel": "Segunda mano",
+    "buyLink": "https://www.example-bookshop.com/semillas-de-ansiedad-1",
+    "imageLink": ""
+  },
+  {
+    "id": "brunilda-en-la-plata",
+    "title": "Brunilda en la plata",
+    "subtitle": "Genís Rigol",
+    "section": "La biblioteca andante",
+    "price": 22.9,
+    "buyLink": "https://www.example-bookshop.com/brunilda-en-la-plata",
+    "imageLink": ""
+  },
+  {
+    "id": "un-lugar-para-mungo",
+    "title": "Un lugar para Mungo",
+    "subtitle": "Douglas Stuart",
+    "section": "Another section",
+    "price": 22.9,
+    "buyLink": "https://www.example-bookshop.com/un-lugar-para-mungo",
+    "imageLink": ""
+  }
+]
