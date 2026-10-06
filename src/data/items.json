@@ -9,6 +9,15 @@
     "imageLink": "https://m.media-amazon.com/images/I/91wnIauhuGL._SY466_.jpg"
   },
   {
+    "id": "no-voy-a-ninguna-parte",
+    "title": "No voy a ninguna parte",
+    "subtitle": "Rumena Bužarovska",
+    "section": "Rincón de lectura",
+    "price": 21.37,
+    "buyLink": "https://www.elcorteingles.es/libros/A53961801-no-voy-a-ninguna-parte-tapa-blanda-con-solapas/",
+    "imageLink": "https://dam.elcorteingles.es/producto/www-001006524361109-00.jpg?impolicy=frontWeb&width=1200&shape=square"
+  },
+  {
     "id": "effaclar",
     "title": "Effaclar Serum Ultraconcentrado",
     "subtitle": "La Roche Posay",
@@ -34,6 +43,15 @@
     "price": 17.99,
     "buyLink": "https://www.zarahome.com/es/musk-shades-l48487000306ZHMS",
     "imageLink": "https://static.zarahome.net//assets/public/08bc/2417/3fcb4545b4ca/7e5c75c3746a/47510703306-a7/47510703306-a7.jpg?ts=1784703146581&f=auto&w=576&f=auto"
+  },
+  {
+    "id": "chelsea-perfume",
+    "title": "Chelsea Morning",
+    "subtitle": "Lush",
+    "section": "Noche de Spa",
+    "price": 25.00,
+    "buyLink": "https://www.lush.com/es/es/p/chelsea-morning-perfume",
+    "imageLink": "https://unicorn.lush.com/media/thumbnails/products/chelsea_morning_100ml_perfume_ecom_2024_2bd43b53_thumbnail_4096.png"
   },
   {
     "id": "lush-super-milk",
@@ -146,7 +164,7 @@
   {
     "id": "adidas-pantalón",
     "title": "Pantalón de entrenamiento",
-    "subtitle": "Adidas (Talla M)",
+    "subtitle": "Adidas (Talla L)",
     "section": "Fashion show",
     "price": 25,
     "buyLink": "https://www.adidas.es/pantalon-de-entrenamiento-tiro-25-essentials-winterized/JN9470.html",
@@ -223,5 +241,14 @@
     "price": 18.99,
     "buyLink": "https://www.amazon.es/Bass-Persuades-Edici%C3%B3n-Exclusiva-Amazon/dp/B0HD7NJGKM/ref=sr_1_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=4ZNWVRI3LY95&dib=eyJ2IjoiMSJ9.i11kf8mjv422-PjlVFD0sJafbi5wlfxZFVShbASgnf3GjHj071QN20LucGBJIEps.GcrBkFT8hNjr1SvNfsTXohYCNaliQf_ERZbU3pKrqLc&dib_tag=se&keywords=Miley+Bass+persuades&qid=1790446626&sprefix=miley+bass+persuade%2Caps%2C99&sr=8-1",
     "imageLink": "https://m.media-amazon.com/images/I/61RANGtb5OL._SX425_.jpg"
+  },
+  {
+    "id": "plastic-hearts-cd",
+    "title": "Plastic Hearts CD",
+    "subtitle": "Miley Cyrus",
+    "section": "She is Miley Cyrus",
+    "price": 15.99,
+    "buyLink": "https://www.elcorteingles.es/musica/A38006561-plastic-hearts-cd/",
+    "imageLink": "https://dam.elcorteingles.es/producto/www-001005112636567-00.jpg?impolicy=frontWeb&width=1200&shape=square"
   }
 ]
