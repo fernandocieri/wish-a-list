@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
 import { renderHook, waitFor } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
-import { createQueryWrapper } from '../../../../../test/queryWrapper'
-import { ApiError } from '../../../../../lib/errors'
+import { createQueryWrapper } from '@/test/queryWrapper'
+import { ApiError } from '@/lib/errors'
 import { fetchReservations } from '../api'
 import { usePublicList } from './usePublicList'
 

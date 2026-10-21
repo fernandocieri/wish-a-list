@@ -1,4 +1,4 @@
-import { APP_NAME } from '../../../../config'
+import { APP_NAME } from '@/config'
 
 // Stub until Batch 2 (pitch + "Continuar con Google").
 export default function Landing() {

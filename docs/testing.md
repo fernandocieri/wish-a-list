@@ -123,7 +123,7 @@ Run `npm test` and `npm run build` before declaring a batch done.
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
-import { makeItem } from '../../../../../test/factories'
+import { makeItem } from '@/test/factories'
 import GiftCard from './GiftCard'
 
 describe('GiftCard', () => {

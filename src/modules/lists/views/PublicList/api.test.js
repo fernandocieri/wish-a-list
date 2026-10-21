@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
 import { faker } from '@faker-js/faker'
-import { supabase } from '../../../../lib/supabase'
-import { ApiError } from '../../../../lib/errors'
+import { supabase } from '@/lib/supabase'
+import { ApiError } from '@/lib/errors'
 import { fetchReservations, reserveItem } from './api'
 
-vi.mock('../../../../lib/supabase', () => ({ supabase: { from: vi.fn() } }))
+vi.mock('@/lib/supabase', () => ({ supabase: { from: vi.fn() } }))
 
 const makeRow = () => ({
   item_id: faker.string.alphanumeric(8),

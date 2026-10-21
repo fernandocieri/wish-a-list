@@ -1,5 +1,5 @@
-import { supabase } from '../../../../lib/supabase'
-import { toApiError } from '../../../../lib/errors'
+import { supabase } from '@/lib/supabase'
+import { toApiError } from '@/lib/errors'
 
 // Legacy schema (single shared list). Rewritten for get_list() in Batch 4.
 
