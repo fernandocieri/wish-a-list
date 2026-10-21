@@ -5,7 +5,7 @@ Code lives as close as possible to where it is used and moves up only when it is
 
 ```
 src/
-  main.jsx
+  main.jsx                       # providers: QueryClientProvider > AuthProvider > router
   App.jsx                        # router + the "/" switch (Landing vs Dashboard)
   config.js                      # APP_NAME, limits
   index.css
@@ -41,15 +41,17 @@ src/
           hooks/                 # usePublicList (refetch on focus), useReserve
           helpers/               # friendName storage
           api.js                 # get_list, reserve, undo
+          queries.js             # publicListKeys + queryOptions; private to this view
       components/                # shared in module: CopyButton
       hooks/                     # shared in module: useList (single list by id)
       helpers/                   # formatPrice, groupBySection, shareUrl
       api.js                     # list CRUD: create, rename, delete, count
+      queries.js                 # listKeys + queryOptions for owner data (lists, items)
       index.js
 
   components/                    # app-wide shared: Layout, Modal, Button, Spinner, ErrorState
   hooks/                         # app-wide: useDocumentTitle
-  lib/                           # supabase.js client, errors.js (Postgres error -> Spanish message)
+  lib/                           # supabase.js client, queryClient.js, errors.js (Postgres error -> ApiError code)
   views/NotFound/                # app-level view, belongs to no domain
 ```
 
@@ -58,10 +60,10 @@ Folders in the tree are created when the first file needs them, not up front.
 
 ## Vocabulary
 
-- **Module:** a domain (`auth`, `lists`). Its top-level `components/`, `hooks/`, `helpers/` and `api.js` are
-  shared *between that module's views only*.
+- **Module:** a domain (`auth`, `lists`). Its top-level `components/`, `hooks/`, `helpers/`, `api.js` and
+  `queries.js` are shared *between that module's views only*.
 - **View:** a screen mapped to a route. A folder named after the view, with the view component at its root and its
-  own `components/`, `hooks/`, `helpers/` and `api.js` as needed.
+  own `components/`, `hooks/`, `helpers/`, `api.js` and `queries.js` as needed.
 - **Root folders** (`src/components`, `src/hooks`, `src/lib`): shared across modules.
 
 ## Rules
@@ -73,11 +75,26 @@ Folders in the tree are created when the first file needs them, not up front.
    they use its `index.js`.
 3. **Routing.** `App.jsx` imports views from each module's `index.js` and maps routes to them. Its only logic is the
    `/` switch: `Landing` when there is no real account, `Dashboard` when there is.
-4. **Data handling.** `api.js` files are the only code that calls Supabase, using the client from `lib/supabase.js`.
-   Components call hooks, hooks call `api.js`. No component talks to Supabase directly.
-5. **Reservations stay in `PublicList`.** `get_list`, reserve and undo live in `views/PublicList/api.js`. Nothing in
-   `Dashboard`, `EditList` or the module-level `lists/api.js` reads or writes reservations, and nothing imports
-   `PublicList` internals. This is how "owners never see reservations" is enforced in code.
+4. **Data handling.** Server state goes through TanStack Query. The layers are
+   `api.js` → `queries.js` → hooks → components:
+   - `api.js` files are the only code that calls Supabase, using the client from `lib/supabase.js`. They return data
+     and **throw** an `ApiError` from `lib/errors.js` (with a `code` such as `already-reserved` or `list_limit`) on
+     failure. Mapping a code to Spanish text happens in the UI, not in `api.js` or `errors.js`.
+   - `queries.js` sits next to an `api.js` that has reads. It holds that level's query key factory and
+     `queryOptions()` factories, so a key and its fetcher are defined once. Keep mutations in the hook that uses them
+     unless two hooks share one (rule 1).
+   - Hooks call `useQuery` / `useMutation` with those factories. Components call hooks and never call `useQuery`,
+     `queryClient` or Supabase directly.
+   - The auth session is not server state: it lives in `AuthProvider`, which clears the query cache on sign-out or
+     when the signed-in account changes.
+   - If one level's data code outgrows a single `queries.js` (roughly 150+ lines), turn that level into a
+     `repository/` folder containing `api.js`, `keys.js`, `queries.js` and `mutations.js`. Do it per level, never as a
+     global or module-wide folder that would mix in another view's data.
+5. **Reservations stay in `PublicList`.** `get_list`, reserve and undo live in `views/PublicList/api.js`, and their
+   cache keys in `views/PublicList/queries.js`, under a root (`['public-list', ...]`) separate from `['lists', ...]`.
+   Nothing in `Dashboard`, `EditList` or the module-level `lists/api.js` / `lists/queries.js` reads or writes
+   reservations, and nothing imports `PublicList` internals or uses its keys. This is how "owners never see
+   reservations" is enforced in code.
 6. **Naming.** Folders are `kebab-case` except views, which use the component's `PascalCase`. Components are
    `PascalCase.jsx`, hooks start with `use`, helpers are plain `camelCase.js`.
 
@@ -88,5 +105,5 @@ Folders in the tree are created when the first file needs them, not up front.
 | `src/App.jsx` | `modules/lists/views/PublicList/PublicList.jsx` (new `App.jsx` is the router) |
 | `src/components/GiftCard.jsx` | `modules/lists/views/PublicList/components/GiftCard.jsx` |
 | `src/components/ReserveModal.jsx` | `modules/lists/views/PublicList/components/ReserveModal.jsx` |
-| `src/lib/reservations.js` | `modules/lists/views/PublicList/api.js` (rewritten for the new schema) |
+| `src/lib/reservations.js` | `modules/lists/views/PublicList/api.js` (rewritten for the new schema), plus `queries.js` and hooks when TanStack Query is added |
 | `src/data/items.json` | stays under `PublicList/` until the Batch 5 cutover, then removed |

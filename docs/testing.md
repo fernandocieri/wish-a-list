@@ -37,7 +37,9 @@ Run `npm test` and `npm run build` before declaring a batch done.
   `localStorage` after each test, and reseeds faker before each test.
 - `restoreMocks` and `clearMocks` are on in `vite.config.js`, so mocks reset between tests automatically.
 - Shared test helpers (for example a `renderWithProviders` that wraps the router and `AuthProvider`, or data
-  factories) go in `src/test/` and are added when a second test needs them, not up front.
+  factories) go in `src/test/` and are added when a second test needs them, not up front. The first one needed is
+  `src/test/queryWrapper.jsx`: `createQueryWrapper()` returns a wrapper with a **new** `QueryClient` per call, with
+  `retry: false` for queries and mutations, so hook tests share no cache and error paths fail fast.
 - File names: `*.test.js` for plain logic, `*.test.jsx` for anything that renders.
 
 ## What to test per layer
@@ -45,9 +47,10 @@ Run `npm test` and `npm run build` before declaring a batch done.
 | Layer | How |
 | --- | --- |
 | `helpers/` | Plain unit tests, table-driven with `it.each`. Highest value, cheapest to write. |
-| `api.js` | Mock the Supabase client with `vi.mock` on `lib/supabase`. Assert the query shape and error mapping (`23505` to `already-reserved`, `list_limit` to an error code or key the UI can translate, not to display text). |
-| `hooks/` | `renderHook` with `api.js` mocked. Test states (loading, error, refetch on focus), not implementation. |
-| `components/` and views | Render, interact, assert on visible text and roles. Mock the view's hooks or `api.js`, never its internals. |
+| `api.js` | Mock the Supabase client with `vi.mock` on `lib/supabase`. Assert the query shape and that failures throw an `ApiError` with the right `code` (`23505` to `already-reserved`, `list_limit` to `list_limit`), never display text. |
+| `queries.js` | Usually covered through hook tests. One cheap guard is worth keeping: `PublicList` keys never start with `'lists'`. |
+| `hooks/` | `renderHook` with `api.js` mocked and `wrapper: createQueryWrapper()`. Test states (loading, error, refetch on focus, invalidation after a mutation, including a failed one), not implementation. |
+| `components/` and views | Render, interact, assert on visible text and roles. Mock the view's hooks, so no `QueryClient` is needed; never mock its internals. |
 | RLS and `get_list` | **Not Vitest.** Security rules are proven with `supabase/tests/rls_checks.sql` against a real database. Mocked tests cannot prove them. |
 
 ## Writing conventions
@@ -71,7 +74,7 @@ Run `npm test` and `npm run build` before declaring a batch done.
    localization or rewording a message never breaks a test. Assert on structure, state and data instead:
    - *Data the user typed or the factory produced is not copy* and can be asserted: a reserver's name, an item
      title, a price value from `makeItem`.
-   - *Errors and states*: `api.js` and `lib/errors.js` return codes or keys (`already-reserved`, `list_limit`), and the
+   - *Errors and states*: `api.js` and `lib/errors.js` throw `ApiError`s carrying codes (`already-reserved`, `list_limit`), and the
      UI renders them in an element with `role="alert"` or a `data-testid`. Test the code mapping in unit tests, and in
      component tests assert that the alert exists, not what it says.
    - *Enabled/disabled, present/absent, checked, count of items*: assert these with jest-dom matchers.
