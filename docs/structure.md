@@ -73,6 +73,8 @@ Folders in the tree are created when the first file needs them, not up front.
 2. **Imports go down only.** A view may import from its own folder, its module, the root folders, and `auth` through
    its `index.js`. Views never import from sibling views. Modules never import another module's views or internals;
    they use its `index.js`.
+   **Path style:** `@/` is an alias for `src/`. Use it for anything outside the current module (`@/lib/supabase`,
+   `@/test/queryWrapper`, `@/modules/auth`); keep relative paths (`./`, `../`) inside a module.
 3. **Routing.** `App.jsx` imports views from each module's `index.js` and maps routes to them. Its only logic is the
    `/` switch: `Landing` when there is no real account, `Dashboard` when there is.
 4. **Data handling.** Server state goes through TanStack Query. The layers are

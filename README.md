@@ -3,21 +3,19 @@
 Wishlist interactiva: cada persona puede reservar un regalo escribiendo solo su
 nombre, y el resto lo ve marcado como reservado en tiempo real.
 
-## 1. Probarlo en local (sin nada más)
+## 1. Probarlo en local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Sin configurar nada, la app funciona en **modo de prueba local**: las
-reservas se guardan en `localStorage` de tu navegador, así que no las verá
-nadie más. Es solo para revisar el diseño y el flujo antes de conectar la
-base de datos real.
+La app necesita un proyecto de Supabase: antes de arrancarla, crea
+`.env.local` con sus claves (ver el paso 3). La lista está en `/l/<cualquier-texto>`.
 
 ## 2. Editar el catálogo de regalos
 
-Todo vive en `src/data/items.json`. Cada regalo tiene:
+Todo vive en `src/modules/lists/views/PublicList/data/items.json`. Cada regalo tiene:
 
 ```json
 {
@@ -83,9 +81,8 @@ Todo vive en `src/data/items.json`. Cada regalo tiene:
    cp .env.example .env.local
    ```
 
-5. Reinicia `npm run dev`. El aviso de "modo de prueba local" desaparecerá:
-   ya estás guardando reservas de verdad, compartidas entre todo el que abra
-   el enlace.
+5. Reinicia `npm run dev`: ya estás guardando reservas de verdad,
+   compartidas entre todo el que abra el enlace.
 
 ## 4. Desplegar gratis
 
