@@ -1,23 +1,61 @@
 {
-  "name": "biblioteca-andante-wishlist",
+  "name": "wish-a-list",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
+    "@tanstack/react-query": "^5.104.5",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@faker-js/faker": "^10.6.0",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^17.6.0",
     "postcss": "^8.4.47",
+    "prettier": "^3.9.10",
     "tailwindcss": "^3.4.13",
-    "vite": "^5.4.8"
-  }
+    "vite": "^5.4.8",
+    "vitest": "^3.2.7"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,html,yml}": [
+      "prettier --write"
+    ]
+  },
+  "packageManager": "pnpm@9.12.3"
 }

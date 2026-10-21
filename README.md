@@ -1,23 +1,21 @@
-# Lista de regalos — La biblioteca andante
+# Wish-a-List
 
 Wishlist interactiva: cada persona puede reservar un regalo escribiendo solo su
 nombre, y el resto lo ve marcado como reservado en tiempo real.
 
-## 1. Probarlo en local (sin nada más)
+## 1. Probarlo en local
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-Sin configurar nada, la app funciona en **modo de prueba local**: las
-reservas se guardan en `localStorage` de tu navegador, así que no las verá
-nadie más. Es solo para revisar el diseño y el flujo antes de conectar la
-base de datos real.
+La app necesita un proyecto de Supabase: antes de arrancarla, crea
+`.env.local` con sus claves (ver el paso 3). La lista está en `/l/<cualquier-texto>`.
 
 ## 2. Editar el catálogo de regalos
 
-Todo vive en `src/data/items.json`. Cada regalo tiene:
+Todo vive en `src/modules/lists/views/PublicList/data/items.json`. Cada regalo tiene:
 
 ```json
 {
@@ -26,10 +24,10 @@ Todo vive en `src/data/items.json`. Cada regalo tiene:
   "author": "Autor (opcional, déjalo \"\" si no aplica)",
   "section": "Nombre de la sección",
   "price": 22.9,
-  "priceLabel": "Segunda mano",      // opcional: sustituye al precio si lo pones
+  "priceLabel": "Segunda mano", // opcional: sustituye al precio si lo pones
   "buyLink": "https://...",
-  "imageLink": ""                     // opcional: si lo dejas vacío, se intenta
-                                       // sacar la portada de buyLink automáticamente
+  "imageLink": "" // opcional: si lo dejas vacío, se intenta
+  // sacar la portada de buyLink automáticamente
 }
 ```
 
@@ -83,9 +81,8 @@ Todo vive en `src/data/items.json`. Cada regalo tiene:
    cp .env.example .env.local
    ```
 
-5. Reinicia `npm run dev`. El aviso de "modo de prueba local" desaparecerá:
-   ya estás guardando reservas de verdad, compartidas entre todo el que abra
-   el enlace.
+5. Reinicia `pnpm dev`: ya estás guardando reservas de verdad,
+   compartidas entre todo el que abra el enlace.
 
 ## 4. Desplegar gratis
 
@@ -93,6 +90,7 @@ Cualquiera de estas dos opciones funciona igual de bien con este proyecto
 (build estático de Vite):
 
 **Vercel**
+
 1. Sube este proyecto a un repositorio de GitHub.
 2. En [vercel.com](https://vercel.com), "Add New Project" → importa el repo.
 3. En "Environment Variables", añade `VITE_SUPABASE_URL` y
@@ -100,9 +98,10 @@ Cualquiera de estas dos opciones funciona igual de bien con este proyecto
 4. Deploy. Cada `git push` vuelve a desplegar automáticamente.
 
 **Netlify**
+
 1. Sube el repo a GitHub.
 2. En [netlify.com](https://netlify.com), "Add new site" → importa el repo.
-   Build command: `npm run build`. Publish directory: `dist`.
+   Build command: `pnpm build`. Publish directory: `dist`.
 3. En "Site configuration → Environment variables", añade las mismas dos
    variables que arriba.
 4. Deploy.
