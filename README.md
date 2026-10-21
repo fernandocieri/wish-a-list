@@ -84,6 +84,35 @@ Todo vive en `src/modules/lists/views/PublicList/data/items.json`. Cada regalo t
 5. Reinicia `pnpm dev`: ya estás guardando reservas de verdad,
    compartidas entre todo el que abra el enlace.
 
+## 3b. Inicio de sesión con Google
+
+Quien crea listas entra con Google; quien reserva no necesita cuenta (recibe
+una sesión anónima). Hay un proyecto de Supabase de desarrollo y otro de
+producción, y en Google Cloud un único proyecto con un cliente OAuth por cada
+uno (`Wish-a-List dev` y `Wish-a-List prod`).
+
+1. **Google Auth Platform → Branding:** nombre de la app, correo de soporte,
+   enlace a la política de privacidad (`https://<dominio>/privacy`) y
+   `<ref>.supabase.co` como dominio autorizado (`<ref>` es el Project ID en
+   Supabase → Project Settings → General).
+2. **Data access:** solo `openid`, `email` y `profile` (no requiere revisión
+   de Google).
+3. **Audience:** publica la app ("In production"). En modo Testing solo
+   pueden entrar los usuarios de prueba.
+4. **Clients:** crea un cliente de tipo Web con la URI de redirección
+   `https://<ref>.supabase.co/auth/v1/callback` y pega su client ID y secret
+   en Supabase → Authentication → Sign In / Providers → Google.
+5. **Supabase → Authentication → URL Configuration:**
+   - Desarrollo: Site URL `http://localhost:5173`; Redirect URLs
+     `http://localhost:5173/**` y el patrón de previews de Vercel
+     (`https://wish-a-list-*-<team>.vercel.app/**`).
+   - Producción: solo la URL de producción (y `/**`), sin localhost.
+6. **Supabase → Authentication → Sign In / Providers:** activa
+   _anonymous sign-ins_ (lo usan los amigos al reservar).
+7. **Variables:** `.env.local` y el entorno **Preview** de Vercel apuntan al
+   proyecto de desarrollo; el entorno **Production** de Vercel, al de
+   producción.
+
 ## 4. Desplegar gratis
 
 Cualquiera de estas dos opciones funciona igual de bien con este proyecto
