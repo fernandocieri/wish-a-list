@@ -22,12 +22,12 @@ Not used on purpose: MSW (Supabase is mocked at the `api.js` boundary, there is 
 ## Running
 
 ```bash
-npm test            # run everything once
-npm run test:watch  # watch mode
-npx vitest run path/to/File.test.jsx   # one file
+pnpm test                # run everything once
+pnpm test:watch          # watch mode
+pnpm vitest run path/to/File.test.jsx   # one file
 ```
 
-Run `npm test` and `npm run build` before declaring a batch done.
+Run `pnpm test` and `pnpm build` before declaring a batch done.
 
 ## Layout
 

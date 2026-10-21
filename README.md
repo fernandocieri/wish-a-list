@@ -6,8 +6,8 @@ nombre, y el resto lo ve marcado como reservado en tiempo real.
 ## 1. Probarlo en local
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 La app necesita un proyecto de Supabase: antes de arrancarla, crea
@@ -81,7 +81,7 @@ Todo vive en `src/modules/lists/views/PublicList/data/items.json`. Cada regalo t
    cp .env.example .env.local
    ```
 
-5. Reinicia `npm run dev`: ya estás guardando reservas de verdad,
+5. Reinicia `pnpm dev`: ya estás guardando reservas de verdad,
    compartidas entre todo el que abra el enlace.
 
 ## 4. Desplegar gratis
@@ -101,7 +101,7 @@ Cualquiera de estas dos opciones funciona igual de bien con este proyecto
 
 1. Sube el repo a GitHub.
 2. En [netlify.com](https://netlify.com), "Add new site" → importa el repo.
-   Build command: `npm run build`. Publish directory: `dist`.
+   Build command: `pnpm build`. Publish directory: `dist`.
 3. En "Site configuration → Environment variables", añade las mismas dos
    variables que arriba.
 4. Deploy.
