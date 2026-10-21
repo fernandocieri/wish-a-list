@@ -1,6 +1,6 @@
 # Project structure
 
-The code is organized by **domain**. Each domain is a *module*; each screen in a module is a *view*.
+The code is organized by **domain**. Each domain is a _module_; each screen in a module is a _view_.
 Code lives as close as possible to where it is used and moves up only when it is shared.
 
 ```
@@ -61,7 +61,7 @@ Folders in the tree are created when the first file needs them, not up front.
 ## Vocabulary
 
 - **Module:** a domain (`auth`, `lists`). Its top-level `components/`, `hooks/`, `helpers/`, `api.js` and
-  `queries.js` are shared *between that module's views only*.
+  `queries.js` are shared _between that module's views only_.
 - **View:** a screen mapped to a route. A folder named after the view, with the view component at its root and its
   own `components/`, `hooks/`, `helpers/`, `api.js` and `queries.js` as needed.
 - **Root folders** (`src/components`, `src/hooks`, `src/lib`): shared across modules.
@@ -102,10 +102,10 @@ Folders in the tree are created when the first file needs them, not up front.
 
 ## Mapping from the pre-restructure files
 
-| Before | After |
-| --- | --- |
-| `src/App.jsx` | `modules/lists/views/PublicList/PublicList.jsx` (new `App.jsx` is the router) |
-| `src/components/GiftCard.jsx` | `modules/lists/views/PublicList/components/GiftCard.jsx` |
-| `src/components/ReserveModal.jsx` | `modules/lists/views/PublicList/components/ReserveModal.jsx` |
-| `src/lib/reservations.js` | `modules/lists/views/PublicList/api.js` (rewritten for the new schema), plus `queries.js` and hooks when TanStack Query is added |
-| `src/data/items.json` | stays under `PublicList/` until the Batch 5 cutover, then removed |
+| Before                            | After                                                                                                                            |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `src/App.jsx`                     | `modules/lists/views/PublicList/PublicList.jsx` (new `App.jsx` is the router)                                                    |
+| `src/components/GiftCard.jsx`     | `modules/lists/views/PublicList/components/GiftCard.jsx`                                                                         |
+| `src/components/ReserveModal.jsx` | `modules/lists/views/PublicList/components/ReserveModal.jsx`                                                                     |
+| `src/lib/reservations.js`         | `modules/lists/views/PublicList/api.js` (rewritten for the new schema), plus `queries.js` and hooks when TanStack Query is added |
+| `src/data/items.json`             | stays under `PublicList/` until the Batch 5 cutover, then removed                                                                |

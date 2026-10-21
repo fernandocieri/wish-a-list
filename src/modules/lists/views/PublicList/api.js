@@ -13,7 +13,10 @@ export async function fetchReservations() {
 
   const map = {}
   for (const row of data) {
-    map[row.item_id] = { reservedBy: row.reserved_by, reservedAt: row.reserved_at }
+    map[row.item_id] = {
+      reservedBy: row.reserved_by,
+      reservedAt: row.reserved_at,
+    }
   }
   return map
 }

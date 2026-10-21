@@ -20,7 +20,10 @@ export default function PublicList() {
   }, [])
 
   function handleConfirmReserve(name) {
-    reserve.mutate({ itemId: activeItem.id, name }, { onSuccess: () => setActiveItem(null) })
+    reserve.mutate(
+      { itemId: activeItem.id, name },
+      { onSuccess: () => setActiveItem(null) },
+    )
   }
 
   return (
@@ -30,7 +33,8 @@ export default function PublicList() {
           Lista de regalos
         </h1>
         <p className="mt-1 text-sm text-neutral-500">
-          Reserva lo que vayas a regalar para que nadie repita. Recuerda que estas son ideas, si quieres regalar otra cosa, ¡adelante!
+          Reserva lo que vayas a regalar para que nadie repita. Recuerda que
+          estas son ideas, si quieres regalar otra cosa, ¡adelante!
         </p>
       </header>
 

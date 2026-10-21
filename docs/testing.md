@@ -7,14 +7,14 @@ enforced in review.
 
 ## Stack
 
-| Tool | Role |
-| --- | --- |
-| `vitest` (3.x) | Runner. Reuses `vite.config.js`. Pinned to 3.x because Vitest 5 requires Vite 6+ and the project is on Vite 5. |
-| `jsdom` (26.x) | DOM environment. Pinned because 30.x fails to load on Node 22.4. |
-| `@testing-library/react`, `@testing-library/dom` | Render components and query them the way a user sees them. |
-| `@testing-library/user-event` | Realistic typing and clicking. Prefer it over `fireEvent`. |
-| `@testing-library/jest-dom` | Readable matchers: `toBeDisabled`, `toHaveTextContent`, `toBeInTheDocument`. |
-| `@faker-js/faker` | Test data. |
+| Tool                                             | Role                                                                                                           |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `vitest` (3.x)                                   | Runner. Reuses `vite.config.js`. Pinned to 3.x because Vitest 5 requires Vite 6+ and the project is on Vite 5. |
+| `jsdom` (26.x)                                   | DOM environment. Pinned because 30.x fails to load on Node 22.4.                                               |
+| `@testing-library/react`, `@testing-library/dom` | Render components and query them the way a user sees them.                                                     |
+| `@testing-library/user-event`                    | Realistic typing and clicking. Prefer it over `fireEvent`.                                                     |
+| `@testing-library/jest-dom`                      | Readable matchers: `toBeDisabled`, `toHaveTextContent`, `toBeInTheDocument`.                                   |
+| `@faker-js/faker`                                | Test data.                                                                                                     |
 
 Not used on purpose: MSW (Supabase is mocked at the `api.js` boundary, there is no network to intercept), Playwright
 (possible later for the two-browser reservation flow), coverage tooling.
@@ -44,14 +44,14 @@ Run `npm test` and `npm run build` before declaring a batch done.
 
 ## What to test per layer
 
-| Layer | How |
-| --- | --- |
-| `helpers/` | Plain unit tests, table-driven with `it.each`. Highest value, cheapest to write. |
-| `api.js` | Mock the Supabase client with `vi.mock` on `lib/supabase`. Assert the query shape and that failures throw an `ApiError` with the right `code` (`23505` to `already-reserved`, `list_limit` to `list_limit`), never display text. |
-| `queries.js` | Usually covered through hook tests. One cheap guard is worth keeping: `PublicList` keys never start with `'lists'`. |
-| `hooks/` | `renderHook` with `api.js` mocked and `wrapper: createQueryWrapper()`. Test states (loading, error, refetch on focus, invalidation after a mutation, including a failed one), not implementation. |
-| `components/` and views | Render, interact, assert on visible text and roles. Mock the view's hooks, so no `QueryClient` is needed; never mock its internals. |
-| RLS and `get_list` | **Not Vitest.** Security rules are proven with `supabase/tests/rls_checks.sql` against a real database. Mocked tests cannot prove them. |
+| Layer                   | How                                                                                                                                                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `helpers/`              | Plain unit tests, table-driven with `it.each`. Highest value, cheapest to write.                                                                                                                                                 |
+| `api.js`                | Mock the Supabase client with `vi.mock` on `lib/supabase`. Assert the query shape and that failures throw an `ApiError` with the right `code` (`23505` to `already-reserved`, `list_limit` to `list_limit`), never display text. |
+| `queries.js`            | Usually covered through hook tests. One cheap guard is worth keeping: `PublicList` keys never start with `'lists'`.                                                                                                              |
+| `hooks/`                | `renderHook` with `api.js` mocked and `wrapper: createQueryWrapper()`. Test states (loading, error, refetch on focus, invalidation after a mutation, including a failed one), not implementation.                                |
+| `components/` and views | Render, interact, assert on visible text and roles. Mock the view's hooks, so no `QueryClient` is needed; never mock its internals.                                                                                              |
+| RLS and `get_list`      | **Not Vitest.** Security rules are proven with `supabase/tests/rls_checks.sql` against a real database. Mocked tests cannot prove them.                                                                                          |
 
 ## Writing conventions
 
@@ -72,12 +72,12 @@ Run `npm test` and `npm run build` before declaring a batch done.
    Wait for async UI with `findBy...` or `waitFor`. Never use `setTimeout` or fixed sleeps.
 7. **Never assert on UI copy.** Do not match visible Spanish text, in regexes or otherwise, so that adding
    localization or rewording a message never breaks a test. Assert on structure, state and data instead:
-   - *Data the user typed or the factory produced is not copy* and can be asserted: a reserver's name, an item
+   - _Data the user typed or the factory produced is not copy_ and can be asserted: a reserver's name, an item
      title, a price value from `makeItem`.
-   - *Errors and states*: `api.js` and `lib/errors.js` throw `ApiError`s carrying codes (`already-reserved`, `list_limit`), and the
+   - _Errors and states_: `api.js` and `lib/errors.js` throw `ApiError`s carrying codes (`already-reserved`, `list_limit`), and the
      UI renders them in an element with `role="alert"` or a `data-testid`. Test the code mapping in unit tests, and in
      component tests assert that the alert exists, not what it says.
-   - *Enabled/disabled, present/absent, checked, count of items*: assert these with jest-dom matchers.
+   - _Enabled/disabled, present/absent, checked, count of items_: assert these with jest-dom matchers.
 8. **Business rules get tests first.** The ones that matter most here: owners never see reservations, link
    validation mirrors the database constraints, limit messages (`list_limit`, `item_limit`, `reservation_limit`),
    only the reserver can undo. UI polish needs thinner coverage.
@@ -110,7 +110,9 @@ Run `npm test` and `npm run build` before declaring a batch done.
   })
 
   // in a test
-  const reserved = makeItem({ reservation: { reserved_by: 'Ana', is_mine: false } })
+  const reserved = makeItem({
+    reservation: { reserved_by: 'Ana', is_mine: false },
+  })
   ```
 
 - Use `fakerES` (`import { fakerES as faker } from '@faker-js/faker'`) only if a test needs Spanish-looking data. The
@@ -139,7 +141,9 @@ describe('GiftCard', () => {
   })
 
   it('hides the reserve button when someone else reserved it', () => {
-    const item = makeItem({ reservation: { reserved_by: 'Ana', is_mine: false } })
+    const item = makeItem({
+      reservation: { reserved_by: 'Ana', is_mine: false },
+    })
     render(<GiftCard item={item} />)
 
     expect(screen.getByTestId('reserved-by')).toHaveTextContent('Ana') // Ana is data, not copy

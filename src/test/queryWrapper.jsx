@@ -13,7 +13,9 @@ export function createQueryWrapper() {
   })
 
   function QueryWrapper({ children }) {
-    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    return (
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    )
   }
 
   QueryWrapper.queryClient = queryClient

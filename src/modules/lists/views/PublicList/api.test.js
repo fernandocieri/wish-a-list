@@ -33,13 +33,24 @@ describe('fetchReservations', () => {
     const result = await fetchReservations()
 
     expect(supabase.from).toHaveBeenCalledWith('reservations')
-    expect(result).toEqual({ [row.item_id]: { reservedBy: row.reserved_by, reservedAt: row.reserved_at } })
+    expect(result).toEqual({
+      [row.item_id]: {
+        reservedBy: row.reserved_by,
+        reservedAt: row.reserved_at,
+      },
+    })
   })
 
   it('throws an ApiError when the query fails', async () => {
-    mockSelect({ data: null, error: { code: '42501', message: 'permission denied' } })
+    mockSelect({
+      data: null,
+      error: { code: '42501', message: 'permission denied' },
+    })
 
-    await expect(fetchReservations()).rejects.toMatchObject({ name: 'ApiError', code: 'unknown' })
+    await expect(fetchReservations()).rejects.toMatchObject({
+      name: 'ApiError',
+      code: 'unknown',
+    })
   })
 })
 
@@ -50,14 +61,26 @@ describe('reserveItem', () => {
 
     const result = await reserveItem(row.item_id, row.reserved_by)
 
-    expect(insert).toHaveBeenCalledWith({ item_id: row.item_id, reserved_by: row.reserved_by })
-    expect(result).toEqual({ reservedBy: row.reserved_by, reservedAt: row.reserved_at })
+    expect(insert).toHaveBeenCalledWith({
+      item_id: row.item_id,
+      reserved_by: row.reserved_by,
+    })
+    expect(result).toEqual({
+      reservedBy: row.reserved_by,
+      reservedAt: row.reserved_at,
+    })
   })
 
   it('throws "already-reserved" when the insert hits a unique violation', async () => {
-    mockInsert({ data: null, error: { code: '23505', message: 'duplicate key value' } })
+    mockInsert({
+      data: null,
+      error: { code: '23505', message: 'duplicate key value' },
+    })
 
-    const promise = reserveItem(faker.string.alphanumeric(8), faker.person.firstName())
+    const promise = reserveItem(
+      faker.string.alphanumeric(8),
+      faker.person.firstName(),
+    )
 
     await expect(promise).rejects.toBeInstanceOf(ApiError)
     await expect(promise).rejects.toMatchObject({ code: 'already-reserved' })

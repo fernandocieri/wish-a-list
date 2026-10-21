@@ -24,10 +24,10 @@ Todo vive en `src/modules/lists/views/PublicList/data/items.json`. Cada regalo t
   "author": "Autor (opcional, déjalo \"\" si no aplica)",
   "section": "Nombre de la sección",
   "price": 22.9,
-  "priceLabel": "Segunda mano",      // opcional: sustituye al precio si lo pones
+  "priceLabel": "Segunda mano", // opcional: sustituye al precio si lo pones
   "buyLink": "https://...",
-  "imageLink": ""                     // opcional: si lo dejas vacío, se intenta
-                                       // sacar la portada de buyLink automáticamente
+  "imageLink": "" // opcional: si lo dejas vacío, se intenta
+  // sacar la portada de buyLink automáticamente
 }
 ```
 
@@ -90,6 +90,7 @@ Cualquiera de estas dos opciones funciona igual de bien con este proyecto
 (build estático de Vite):
 
 **Vercel**
+
 1. Sube este proyecto a un repositorio de GitHub.
 2. En [vercel.com](https://vercel.com), "Add New Project" → importa el repo.
 3. En "Environment Variables", añade `VITE_SUPABASE_URL` y
@@ -97,6 +98,7 @@ Cualquiera de estas dos opciones funciona igual de bien con este proyecto
 4. Deploy. Cada `git push` vuelve a desplegar automáticamente.
 
 **Netlify**
+
 1. Sube el repo a GitHub.
 2. En [netlify.com](https://netlify.com), "Add new site" → importa el repo.
    Build command: `npm run build`. Publish directory: `dist`.

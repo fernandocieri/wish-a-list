@@ -1,6 +1,12 @@
 import { useState } from 'react'
 
-export default function ReserveModal({ item, onClose, onConfirm, error, isSubmitting }) {
+export default function ReserveModal({
+  item,
+  onClose,
+  onConfirm,
+  error,
+  isSubmitting,
+}) {
   const [name, setName] = useState('')
 
   if (!item) return null
@@ -22,9 +28,12 @@ export default function ReserveModal({ item, onClose, onConfirm, error, isSubmit
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-sm rounded-t-2xl bg-paper p-5 sm:rounded-2xl"
       >
-        <p className="font-display text-base font-semibold">Reservar «{item.title}»</p>
+        <p className="font-display text-base font-semibold">
+          Reservar «{item.title}»
+        </p>
         <p className="mt-1 text-sm text-neutral-500">
-          Escribe tu nombre para que el resto sepa que ya está pillado. Esta acción no se puede deshacer.
+          Escribe tu nombre para que el resto sepa que ya está pillado. Esta
+          acción no se puede deshacer.
         </p>
 
         <input

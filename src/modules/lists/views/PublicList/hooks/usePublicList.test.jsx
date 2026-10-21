@@ -10,10 +10,14 @@ vi.mock('../api', () => ({ fetchReservations: vi.fn() }))
 
 describe('usePublicList', () => {
   it('starts pending and then returns the reservations', async () => {
-    const reservations = { [faker.string.alphanumeric(8)]: { reservedBy: faker.person.firstName() } }
+    const reservations = {
+      [faker.string.alphanumeric(8)]: { reservedBy: faker.person.firstName() },
+    }
     fetchReservations.mockResolvedValue(reservations)
 
-    const { result } = renderHook(() => usePublicList(), { wrapper: createQueryWrapper() })
+    const { result } = renderHook(() => usePublicList(), {
+      wrapper: createQueryWrapper(),
+    })
 
     expect(result.current.isPending).toBe(true)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
@@ -23,7 +27,9 @@ describe('usePublicList', () => {
   it('exposes the ApiError when the fetch fails', async () => {
     fetchReservations.mockRejectedValue(new ApiError('unknown'))
 
-    const { result } = renderHook(() => usePublicList(), { wrapper: createQueryWrapper() })
+    const { result } = renderHook(() => usePublicList(), {
+      wrapper: createQueryWrapper(),
+    })
 
     await waitFor(() => expect(result.current.isError).toBe(true))
     expect(result.current.error.code).toBe('unknown')

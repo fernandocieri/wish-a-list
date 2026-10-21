@@ -52,15 +52,21 @@ export default function GiftCard({ item, reservation, onReserveClick }) {
       </div>
 
       <div className="mt-2 space-y-0.5">
-        <p className="text-xs font-semibold leading-snug uppercase">{item.title}</p>
+        <p className="text-xs font-semibold leading-snug uppercase">
+          {item.title}
+        </p>
         {item.subtitle && (
-          <p className="text-[11px] uppercase tracking-wide text-neutral-500">{item.subtitle}</p>
+          <p className="text-[11px] uppercase tracking-wide text-neutral-500">
+            {item.subtitle}
+          </p>
         )}
       </div>
 
       <div className="mt-1 flex items-center justify-between">
         {isReserved ? (
-          <span className="text-[11px] font-medium text-reserved">Reservado</span>
+          <span className="text-[11px] font-medium text-reserved">
+            Reservado
+          </span>
         ) : (
           <button
             onClick={() => onReserveClick(item)}

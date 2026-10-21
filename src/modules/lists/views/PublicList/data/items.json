@@ -49,7 +49,7 @@
     "title": "Chelsea Morning",
     "subtitle": "Lush",
     "section": "Noche de Spa",
-    "price": 25.00,
+    "price": 25.0,
     "buyLink": "https://www.lush.com/es/es/p/chelsea-morning-perfume",
     "imageLink": "https://unicorn.lush.com/media/thumbnails/products/chelsea_morning_100ml_perfume_ecom_2024_2bd43b53_thumbnail_4096.png"
   },
@@ -67,7 +67,7 @@
     "title": "Jasmine and Henna",
     "subtitle": "Lush",
     "section": "Noche de Spa",
-    "price": 22.50,
+    "price": 22.5,
     "buyLink": "https://www.lush.com/es/es/p/jasmine-and-henna-hair-treatment",
     "imageLink": "https://www.lush.com/cdn-cgi/image/width=256,f=auto/https://unicorn.lush.com/media/thumbnails/products/jasmine_and_henna_fluff_ease_hair_treatment_2020_thumbnail_256.png"
   },
@@ -193,7 +193,7 @@
     "title": "Orbitals",
     "subtitle": "Edición física",
     "section": "Let's play... Videogames!",
-    "price": 49.90,
+    "price": 49.9,
     "buyLink": "https://www.elcorteingles.es/videojuegos/A200988751-orbitals-nintendo-switch-2",
     "imageLink": "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_992,q_auto:low/qrlbiwa8tvrknzvkjsow"
   },
