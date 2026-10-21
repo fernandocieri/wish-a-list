@@ -1,4 +1,4 @@
-# Lista de regalos — La biblioteca andante
+# Wish-a-List
 
 Wishlist interactiva: cada persona puede reservar un regalo escribiendo solo su
 nombre, y el resto lo ve marcado como reservado en tiempo real.
