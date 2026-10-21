@@ -1,5 +1,7 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { publicListKeys } from './queries'
+
+vi.mock('@/lib/supabase', () => ({ supabase: { from: vi.fn() } }))
 
 describe('publicListKeys', () => {
   it('never shares the owner data root', () => {
