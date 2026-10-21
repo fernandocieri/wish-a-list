@@ -10,5 +10,5 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup()
-  localStorage.clear()
+  if (typeof localStorage !== 'undefined') localStorage.clear()
 })
