@@ -12,6 +12,10 @@ describe('toApiError', () => {
       { code: '22P02', message: 'invalid input syntax for type uuid' },
       'not-found',
     ],
+    [
+      { code: 'anonymous_provider_disabled', status: 422 },
+      'anonymous-disabled',
+    ],
     [{ code: '42501', message: 'permission denied' }, 'unknown'],
     [new Error('Failed to fetch'), 'unknown'],
     [undefined, 'unknown'],

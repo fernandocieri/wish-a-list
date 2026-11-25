@@ -1,35 +1,44 @@
 import { supabase } from '@/lib/supabase'
-import { toApiError } from '@/lib/errors'
+import { ApiError, toApiError } from '@/lib/errors'
+import { ensureSession } from '@/modules/auth'
 
-// Legacy schema (single shared list). Rewritten for get_list() in Batch 4.
-
-/** Returns { [itemId]: { reservedBy, reservedAt } }. */
-export async function fetchReservations() {
-  const { data, error } = await supabase
-    .from('reservations')
-    .select('item_id, reserved_by, reserved_at')
+/**
+ * The list behind a share slug, through get_list() (the only read path for reservations).
+ * { id, title, is_owner, items: [{ ..., reservation: { reserved_by, is_mine } | null }] }.
+ * The database leaves reservation out when the caller owns the list.
+ * Throws ApiError('not-found') for an unknown slug.
+ */
+export async function fetchPublicList(slug) {
+  const { data, error } = await supabase.rpc('get_list', { p_slug: slug })
 
   if (error) throw toApiError(error)
-
-  const map = {}
-  for (const row of data) {
-    map[row.item_id] = {
-      reservedBy: row.reserved_by,
-      reservedAt: row.reserved_at,
-    }
-  }
-  return map
+  if (!data) throw new ApiError('not-found')
+  return data
 }
 
-/** Throws ApiError('already-reserved') when someone beat us to it. */
+/**
+ * Creates an anonymous session on the first reserve, so the friend can undo it later.
+ * reserver_id defaults to auth.uid() in the database.
+ * Throws ApiError 'already-reserved', 'reservation_limit' or 'anonymous-disabled'.
+ */
 export async function reserveItem(itemId, reservedBy) {
-  const { data, error } = await supabase
+  await ensureSession()
+
+  const { error } = await supabase
     .from('reservations')
-    .insert({ item_id: itemId, reserved_by: reservedBy })
-    .select()
-    .single()
+    .insert({ item_id: itemId, reserved_by: reservedBy.trim() })
 
   if (error) throw toApiError(error)
+}
 
-  return { reservedBy: data.reserved_by, reservedAt: data.reserved_at }
+/** RLS only lets the reserver delete it. Throws ApiError('not-found') when nothing was deleted. */
+export async function undoReservation(itemId) {
+  const { data, error } = await supabase
+    .from('reservations')
+    .delete()
+    .eq('item_id', itemId)
+    .select('id')
+
+  if (error) throw toApiError(error)
+  if (data.length === 0) throw new ApiError('not-found')
 }

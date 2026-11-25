@@ -27,6 +27,18 @@ export async function dropSessionIfUserGone() {
   await supabase.auth.signOut({ scope: 'local' })
 }
 
+/**
+ * Makes sure there is a session before a friend reserves, creating an anonymous one if needed.
+ * Called lazily on the first reserve, never just for viewing a list.
+ * Throws ApiError('anonymous-disabled') when the project has anonymous sign-ins switched off.
+ */
+export async function ensureSession() {
+  const { data } = await supabase.auth.getSession()
+  if (data.session) return
+  const { error } = await supabase.auth.signInAnonymously()
+  if (error) throw toApiError(error)
+}
+
 export async function signOut() {
   const { error } = await supabase.auth.signOut()
   if (error) throw toApiError(error)

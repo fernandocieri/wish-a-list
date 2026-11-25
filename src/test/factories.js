@@ -26,3 +26,19 @@ export const makeItem = (overrides = {}) => ({
   ...makeItemFields(),
   ...overrides,
 })
+
+/** An item as get_list() returns it to a friend: free unless a reservation is given. */
+export const makePublicItem = (overrides = {}) => ({
+  ...makeItem(),
+  reservation: null,
+  ...overrides,
+})
+
+/** get_list()'s result. */
+export const makePublicList = (overrides = {}) => ({
+  id: faker.string.uuid(),
+  title: faker.lorem.words(3),
+  is_owner: false,
+  items: [],
+  ...overrides,
+})

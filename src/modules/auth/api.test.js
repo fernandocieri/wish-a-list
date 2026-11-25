@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase'
 import { ApiError } from '@/lib/errors'
 import {
   dropSessionIfUserGone,
+  ensureSession,
   onAuthChange,
   signInWithGoogle,
   signOut,
@@ -15,6 +16,8 @@ vi.mock('@/lib/supabase', () => ({
       signInWithOAuth: vi.fn(),
       signOut: vi.fn(),
       getUser: vi.fn(),
+      getSession: vi.fn(),
+      signInAnonymously: vi.fn(),
     },
   },
 }))
@@ -108,5 +111,46 @@ describe('dropSessionIfUserGone', () => {
     await dropSessionIfUserGone()
 
     expect(supabase.auth.signOut).not.toHaveBeenCalled()
+  })
+})
+
+describe('ensureSession', () => {
+  it('keeps an existing session', async () => {
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: { user: { id: 'x' } } },
+      error: null,
+    })
+
+    await ensureSession()
+
+    expect(supabase.auth.signInAnonymously).not.toHaveBeenCalled()
+  })
+
+  it('signs in anonymously when there is no session', async () => {
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: null },
+      error: null,
+    })
+    supabase.auth.signInAnonymously.mockResolvedValue({ data: {}, error: null })
+
+    await ensureSession()
+
+    expect(supabase.auth.signInAnonymously).toHaveBeenCalled()
+  })
+
+  it('throws "anonymous-disabled" when anonymous sign-ins are off', async () => {
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: null },
+      error: null,
+    })
+    supabase.auth.signInAnonymously.mockResolvedValue({
+      data: {},
+      error: { code: 'anonymous_provider_disabled', status: 422 },
+    })
+
+    await expect(ensureSession()).rejects.toMatchObject({
+      name: 'ApiError',
+      code: 'anonymous-disabled',
+    })
   })
 })

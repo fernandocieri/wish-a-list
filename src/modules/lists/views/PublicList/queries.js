@@ -1,14 +1,16 @@
 import { queryOptions } from '@tanstack/react-query'
-import { fetchReservations } from './api'
+import { fetchPublicList } from './api'
 
 // Separate root from ['lists', ...] so owner code can never touch reservation data.
 export const publicListKeys = {
   all: ['public-list'],
-  reservations: () => [...publicListKeys.all, 'reservations'],
+  detail: (slug) => [...publicListKeys.all, slug],
 }
 
-export const reservationsQueryOptions = () =>
+export const publicListQueryOptions = (slug) =>
   queryOptions({
-    queryKey: publicListKeys.reservations(),
-    queryFn: fetchReservations,
+    queryKey: publicListKeys.detail(slug),
+    queryFn: () => fetchPublicList(slug),
+    // Always stale: refocusing the tab shows other friends' reservations.
+    staleTime: 0,
   })

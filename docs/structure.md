@@ -39,8 +39,8 @@ src/
         PublicList/              # friend view at /l/:slug
           PublicList.jsx
           components/            # GiftCard, ReserveModal, OwnerBanner
-          hooks/                 # usePublicList (refetch on focus), useReserve
-          helpers/               # friendName storage
+          hooks/                 # usePublicList (refetch on focus), useReserve, useUndoReservation
+          helpers/               # friendName storage, withReservation (cache update)
           api.js                 # get_list, reserve, undo
           queries.js             # publicListKeys + queryOptions; private to this view
       components/                # shared in module: CopyButton, Modal, ConfirmDialog
