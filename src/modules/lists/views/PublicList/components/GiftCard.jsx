@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { formatPrice } from '../../../helpers/formatPrice'
 
 function coverFallbackUrl(buyLink) {
   // Live OG-image pull for items with no imageLink, no scraping script needed.
@@ -76,7 +77,7 @@ export default function GiftCard({ item, reservation, onReserveClick }) {
           </button>
         )}
         <span className="text-sm font-semibold">
-          {item.priceLabel ?? `${item.price.toFixed(2).replace('.', ',')}€`}
+          {formatPrice(item.price, item.priceLabel)}
         </span>
       </div>
     </div>

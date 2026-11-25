@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { groupBySection } from '../../helpers/groupBySection'
 import items from './data/items.json'
 import GiftCard from './components/GiftCard'
 import ReserveModal from './components/ReserveModal'
@@ -10,14 +11,7 @@ export default function PublicList() {
   const reserve = useReserve()
   const [activeItem, setActiveItem] = useState(null)
 
-  const sections = useMemo(() => {
-    const map = new Map()
-    for (const item of items) {
-      if (!map.has(item.section)) map.set(item.section, [])
-      map.get(item.section).push(item)
-    }
-    return Array.from(map.entries())
-  }, [])
+  const sections = useMemo(() => groupBySection(items), [])
 
   function handleConfirmReserve(name) {
     reserve.mutate(
