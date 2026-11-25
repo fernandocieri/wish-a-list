@@ -6,6 +6,8 @@ import { createQueryWrapper } from '@/test/queryWrapper'
 import { fetchEditableList } from '../api'
 import { useEditableList } from './useEditableList'
 
+// The module's queries import the real client, which throws without env vars (CI).
+vi.mock('@/lib/supabase', () => ({ supabase: {} }))
 vi.mock('../api', () => ({ fetchEditableList: vi.fn() }))
 
 describe('useEditableList', () => {

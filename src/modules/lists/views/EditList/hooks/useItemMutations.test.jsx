@@ -8,6 +8,8 @@ import { listKeys } from '../../../queries'
 import { createItem, deleteItem, updateItem } from '../api'
 import { useItemMutations } from './useItemMutations'
 
+// The module's queries import the real client, which throws without env vars (CI).
+vi.mock('@/lib/supabase', () => ({ supabase: {} }))
 vi.mock('../api', () => ({
   createItem: vi.fn(),
   updateItem: vi.fn(),
