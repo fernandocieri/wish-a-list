@@ -97,7 +97,7 @@ create table if not exists public.items (
   id          uuid primary key default gen_random_uuid(),
   list_id     uuid not null references public.lists (id) on delete cascade,
   title       text not null check (char_length(btrim(title)) between 1 and 200),
-  author      text check (author is null or char_length(author) <= 200),
+  subtitle    text check (subtitle is null or char_length(subtitle) <= 200),
   section     text not null default 'Regalos' check (char_length(btrim(section)) between 1 and 100),
   price       numeric(10, 2) check (price is null or price >= 0),
   price_label text check (price_label is null or char_length(price_label) <= 40),
@@ -309,7 +309,7 @@ begin
         jsonb_build_object(
           'id', i.id,
           'title', i.title,
-          'author', i.author,
+          'subtitle', i.subtitle,
           'section', i.section,
           'price', i.price,
           'price_label', i.price_label,

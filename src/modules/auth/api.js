@@ -16,6 +16,17 @@ export async function signInWithGoogle() {
   if (error) throw toApiError(error)
 }
 
+/**
+ * The stored session is trusted without a server round-trip, so a user deleted after signing in
+ * keeps a valid-looking token. Asks the server and drops the session locally if the user is gone.
+ * Other failures (e.g. offline) keep the session.
+ */
+export async function dropSessionIfUserGone() {
+  const { error } = await supabase.auth.getUser()
+  if (error?.code !== 'user_not_found') return
+  await supabase.auth.signOut({ scope: 'local' })
+}
+
 export async function signOut() {
   const { error } = await supabase.auth.signOut()
   if (error) throw toApiError(error)

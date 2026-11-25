@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Modal from '../../../components/Modal'
 
 export default function ReserveModal({
   item,
@@ -19,15 +20,8 @@ export default function ReserveModal({
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-ink/40 sm:items-center"
-      onClick={onClose}
-    >
-      <form
-        onSubmit={handleSubmit}
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-sm rounded-t-2xl bg-paper p-5 sm:rounded-2xl"
-      >
+    <Modal onClose={onClose}>
+      <form onSubmit={handleSubmit}>
         <p className="font-display text-base font-semibold">
           Reservar «{item.title}»
         </p>
@@ -70,6 +64,6 @@ export default function ReserveModal({
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   )
 }

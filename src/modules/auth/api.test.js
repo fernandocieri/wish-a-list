@@ -1,7 +1,12 @@
 import { describe, expect, it, vi } from 'vitest'
 import { supabase } from '@/lib/supabase'
 import { ApiError } from '@/lib/errors'
-import { onAuthChange, signInWithGoogle, signOut } from './api'
+import {
+  dropSessionIfUserGone,
+  onAuthChange,
+  signInWithGoogle,
+  signOut,
+} from './api'
 
 vi.mock('@/lib/supabase', () => ({
   supabase: {
@@ -9,6 +14,7 @@ vi.mock('@/lib/supabase', () => ({
       onAuthStateChange: vi.fn(),
       signInWithOAuth: vi.fn(),
       signOut: vi.fn(),
+      getUser: vi.fn(),
     },
   },
 }))
@@ -66,5 +72,41 @@ describe('signOut', () => {
     supabase.auth.signOut.mockResolvedValue({ error: authError })
 
     await expect(signOut()).rejects.toBeInstanceOf(ApiError)
+  })
+})
+
+describe('dropSessionIfUserGone', () => {
+  it('signs out locally when the user no longer exists', async () => {
+    supabase.auth.getUser.mockResolvedValue({
+      data: { user: null },
+      error: { code: 'user_not_found', status: 403 },
+    })
+    supabase.auth.signOut.mockResolvedValue({ error: null })
+
+    await dropSessionIfUserGone()
+
+    expect(supabase.auth.signOut).toHaveBeenCalledWith({ scope: 'local' })
+  })
+
+  it('keeps the session when the user exists', async () => {
+    supabase.auth.getUser.mockResolvedValue({
+      data: { user: { id: 'x' } },
+      error: null,
+    })
+
+    await dropSessionIfUserGone()
+
+    expect(supabase.auth.signOut).not.toHaveBeenCalled()
+  })
+
+  it('keeps the session on other failures, such as being offline', async () => {
+    supabase.auth.getUser.mockResolvedValue({
+      data: { user: null },
+      error: { code: undefined, status: 0 },
+    })
+
+    await dropSessionIfUserGone()
+
+    expect(supabase.auth.signOut).not.toHaveBeenCalled()
   })
 })

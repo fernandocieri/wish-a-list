@@ -1,6 +1,11 @@
 import { createContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
-import { onAuthChange, signInWithGoogle, signOut } from './api'
+import {
+  dropSessionIfUserGone,
+  onAuthChange,
+  signInWithGoogle,
+  signOut,
+} from './api'
 
 export const AuthContext = createContext(null)
 
@@ -25,6 +30,12 @@ export default function AuthProvider({ children }) {
       }),
     [queryClient],
   )
+
+  // Outside the auth callback: supabase-js can deadlock if it is called from inside onAuthStateChange.
+  const userId = session?.user.id
+  useEffect(() => {
+    if (userId) dropSessionIfUserGone().catch(() => {})
+  }, [userId])
 
   const value = useMemo(() => {
     const user = session?.user ?? null
