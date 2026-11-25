@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { reservationsQueryOptions } from '../queries'
+import { publicListQueryOptions } from '../queries'
 
-export function usePublicList() {
-  return useQuery(reservationsQueryOptions())
+export function usePublicList(slug) {
+  return useQuery(publicListQueryOptions(slug))
 }

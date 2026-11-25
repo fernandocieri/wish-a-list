@@ -8,6 +8,14 @@ describe('toApiError', () => {
     [{ code: 'P0001', message: 'item_limit' }, 'item_limit'],
     [{ code: 'P0001', message: 'reservation_limit' }, 'reservation_limit'],
     [{ code: 'P0001', message: 'something else' }, 'unknown'],
+    [
+      { code: '22P02', message: 'invalid input syntax for type uuid' },
+      'not-found',
+    ],
+    [
+      { code: 'anonymous_provider_disabled', status: 422 },
+      'anonymous-disabled',
+    ],
     [{ code: '42501', message: 'permission denied' }, 'unknown'],
     [new Error('Failed to fetch'), 'unknown'],
     [undefined, 'unknown'],

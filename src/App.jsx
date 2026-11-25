@@ -1,11 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Landing } from './modules/auth'
+import Layout from './components/Layout'
+import { Landing, RequireAuth, useAuth } from './modules/auth'
 import { Dashboard, EditList, PublicList } from './modules/lists'
 import NotFound from './views/NotFound/NotFound'
+import Privacy from './views/Privacy/Privacy'
 
 function Home() {
-  // Batch 2: true when useAuth() has a real (non-anonymous) account.
-  const hasAccount = false
+  const { hasAccount, isLoading } = useAuth()
+  // Render nothing until the session is known, so owners never see the landing flash.
+  if (isLoading) return null
   return hasAccount ? <Dashboard /> : <Landing />
 }
 
@@ -13,10 +16,20 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/l/:slug" element={<PublicList />} />
-        <Route path="/lists/:id" element={<EditList />} />
-        <Route path="*" element={<NotFound />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/l/:slug" element={<PublicList />} />
+          <Route
+            path="/lists/:id"
+            element={
+              <RequireAuth>
+                <EditList />
+              </RequireAuth>
+            }
+          />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

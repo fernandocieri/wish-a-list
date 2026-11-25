@@ -1,0 +1,4 @@
+# Share links (/l/<slug>) are capability URLs. They are not disallowed here on purpose:
+# crawlers must be able to fetch them to see the noindex meta tag, which keeps them out of results.
+User-agent: *
+Disallow: /lists/

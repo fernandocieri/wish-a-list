@@ -9,4 +9,7 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
   )
 }
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+// PKCE: the OAuth redirect carries a one-time code instead of tokens in the URL.
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: { flowType: 'pkce' },
+})

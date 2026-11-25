@@ -27,29 +27,29 @@ src/
       views/
         Dashboard/               # "Mis listas"
           Dashboard.jsx
-          components/            # ListRow, NewListForm, DeleteListDialog
-          hooks/                 # useMyLists
+          components/            # ListRow, NewListForm
+          hooks/                 # useMyLists, useCreateList, useDeleteList
         EditList/                # owner editor at /lists/:id
           EditList.jsx
-          components/            # ShareBox, ItemForm, ItemRow, SectionGroup
-          hooks/                 # useEditableList, useItemMutations
-          helpers/               # suggestSections, validateLink
-          api.js                 # item CRUD (owner only)
+          components/            # ShareBox, ListTitleInput, ItemForm, ItemRow, SectionGroup
+          hooks/                 # useEditableList, useRenameList, useItemMutations
+          helpers/               # suggestSections, validateLink, itemForm (validate, form values <-> row)
+          api.js                 # list + items read, item CRUD (owner only)
+          queries.js             # editableListQueryOptions (key from listKeys.detail)
         PublicList/              # friend view at /l/:slug
           PublicList.jsx
           components/            # GiftCard, ReserveModal, OwnerBanner
-          hooks/                 # usePublicList (refetch on focus), useReserve
-          helpers/               # friendName storage
+          hooks/                 # usePublicList (refetch on focus), useReserve, useUndoReservation
+          helpers/               # friendName storage, withReservation (cache update)
           api.js                 # get_list, reserve, undo
           queries.js             # publicListKeys + queryOptions; private to this view
-      components/                # shared in module: CopyButton
-      hooks/                     # shared in module: useList (single list by id)
+      components/                # shared in module: CopyButton, Modal, ConfirmDialog
       helpers/                   # formatPrice, groupBySection, shareUrl
-      api.js                     # list CRUD: create, rename, delete, count
+      api.js                     # list CRUD: my lists (with item count), create, rename, delete
       queries.js                 # listKeys + queryOptions for owner data (lists, items)
       index.js
 
-  components/                    # app-wide shared: Layout, Modal, Button, Spinner, ErrorState
+  components/                    # app-wide shared: Layout (Modal moves here once a second module needs it)
   hooks/                         # app-wide: useDocumentTitle
   lib/                           # supabase.js client, queryClient.js, errors.js (Postgres error -> ApiError code)
   views/NotFound/                # app-level view, belongs to no domain
