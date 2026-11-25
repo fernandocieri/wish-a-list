@@ -2,11 +2,12 @@ import { describe, expect, it, vi } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 import { createQueryWrapper } from '@/test/queryWrapper'
-import { onAuthChange } from './api'
+import { dropSessionIfUserGone, onAuthChange } from './api'
 import AuthProvider from './AuthProvider'
 import { useAuth } from './hooks/useAuth'
 
 vi.mock('./api', () => ({
+  dropSessionIfUserGone: vi.fn(() => Promise.resolve()),
   onAuthChange: vi.fn(),
   signInWithGoogle: vi.fn(),
   signOut: vi.fn(),
@@ -101,6 +102,22 @@ describe('AuthProvider', () => {
     emit('TOKEN_REFRESHED', { ...session })
 
     expect(clear).not.toHaveBeenCalled()
+  })
+
+  it('checks with the server that the signed-in user still exists', () => {
+    const { emit } = renderAuth()
+
+    emit('INITIAL_SESSION', makeSession())
+
+    expect(dropSessionIfUserGone).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not check when there is no session', () => {
+    const { emit } = renderAuth()
+
+    emit('INITIAL_SESSION', null)
+
+    expect(dropSessionIfUserGone).not.toHaveBeenCalled()
   })
 
   it('unsubscribes on unmount', () => {
