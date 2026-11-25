@@ -139,12 +139,18 @@ Neither asks for a card for this use.
 
 ## How reservations work
 
-- When the page loads, the app requests the gift list (fixed, from the JSON)
-  and the reservation list (from Supabase).
-- When you press "I'll buy it", it asks for your name and tries to insert a
-  row into `reservations`. If someone else reserved that same item a second
-  earlier, the database rejects the duplicate and the app says it needs to be
-  refreshed.
-- Reserving is intentionally irreversible from the app itself (there is no
-  "undo reservation" button): if someone makes a mistake, edit the table
-  directly from the Supabase dashboard.
+- A friend opens the share link (`/l/<slug>`). The page reads the list through
+  the `get_list(slug)` database function; viewing creates no session. An
+  unknown slug shows "Esta lista no existe".
+- On the first "Lo compro yo", the app signs the friend in anonymously
+  (Supabase anonymous sign-ins must be enabled) and inserts a row into
+  `reservations` tied to that session. The name is remembered in the browser
+  to prefill the next reservation.
+- If someone else reserved the same item a second earlier, the database
+  rejects the duplicate and the app says so and refreshes the list. One person
+  can reserve at most 10 items per list.
+- Only the person who reserved can undo it, from the same browser
+  ("Deshacer"). The list refreshes when the tab regains focus, so friends see
+  each other's reservations without reloading.
+- The list's owner never receives reservation data: `get_list` leaves it out
+  for them, and the page shows a banner instead of the reserve buttons.
