@@ -28,7 +28,8 @@ src/
         Dashboard/               # "Mis listas"
           Dashboard.jsx
           components/            # ListRow, NewListForm
-          hooks/                 # useMyLists, useCreateList, useDeleteList
+          hooks/                 # useMyLists, useCreateList, useDuplicateList, useDeleteList
+          helpers/               # copyTitle, listLimitMessage
         EditList/                # owner editor at /lists/:id
           EditList.jsx
           components/            # ShareBox, ListTitleInput, ItemForm, ItemRow, SectionGroup
@@ -45,7 +46,7 @@ src/
           queries.js             # publicListKeys + queryOptions; private to this view
       components/                # shared in module: CopyButton, Modal, ConfirmDialog
       helpers/                   # formatPrice, groupBySection, shareUrl
-      api.js                     # list CRUD: my lists (with item count), create, rename, delete
+      api.js                     # list CRUD: my lists (with item count), create, rename, duplicate, delete
       queries.js                 # listKeys + queryOptions for owner data (lists, items)
       index.js
 

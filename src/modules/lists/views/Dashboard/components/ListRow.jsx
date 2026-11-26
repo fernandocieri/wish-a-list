@@ -2,7 +2,12 @@ import { Link } from 'react-router-dom'
 import CopyButton from '../../../components/CopyButton'
 import { shareUrl } from '../../../helpers/shareUrl'
 
-export default function ListRow({ list, onDelete }) {
+export default function ListRow({
+  list,
+  onDuplicate,
+  isDuplicating,
+  onDelete,
+}) {
   const editPath = `/lists/${list.id}`
 
   return (
@@ -27,6 +32,15 @@ export default function ListRow({ list, onDelete }) {
           Editar
         </Link>
         <CopyButton text={shareUrl(list.share_slug)} />
+        <button
+          type="button"
+          onClick={() => onDuplicate(list)}
+          disabled={isDuplicating}
+          data-testid="duplicate-list"
+          className="rounded-pill border border-neutral-300 px-3 py-1 text-xs font-medium disabled:opacity-50"
+        >
+          Duplicar
+        </button>
         <button
           type="button"
           onClick={() => onDelete(list)}

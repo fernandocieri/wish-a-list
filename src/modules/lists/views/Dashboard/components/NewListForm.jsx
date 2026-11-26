@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LIMITS, LIST_TITLE_MAX } from '@/config'
+import { LIST_TITLE_MAX } from '@/config'
+import { LIST_LIMIT_MESSAGE } from '../helpers/listLimitMessage'
 import { useCreateList } from '../hooks/useCreateList'
 
 export default function NewListForm() {
@@ -46,7 +47,7 @@ export default function NewListForm() {
       {createList.error && (
         <p role="alert" className="mt-2 text-sm text-red-600">
           {createList.error.code === 'list_limit'
-            ? `Has llegado al máximo de ${LIMITS.lists} listas. Borra alguna para crear otra.`
+            ? LIST_LIMIT_MESSAGE
             : 'No se ha podido crear la lista. Inténtalo de nuevo.'}
         </p>
       )}
