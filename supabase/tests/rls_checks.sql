@@ -1,5 +1,5 @@
 -- =====================================================================
--- RLS, grants and get_list() checks for 001_multi_user.sql
+-- RLS, grants, get_list() and duplicate_list() checks for 001_multi_user.sql and 002_duplicate_list.sql
 -- Paste into the Supabase SQL Editor of the DEV project and run.
 -- Everything runs in one transaction that is rolled back: nothing is kept.
 -- Pass: the last result reads "all RLS checks passed".
@@ -296,6 +296,76 @@ select public._rls_check('13i: renaming works and keeps the slug',
   (select share_slug from u) = current_setting('rls.slug_a'));
 
 -- ---------------------------------------------------------------------
+-- 14. duplicate_list(): copies the caller's own list and items, never reservations
+-- ---------------------------------------------------------------------
+-- Friend F1 reserves IA2, so the source has a reservation while it is copied.
+set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000f1","role":"authenticated","is_anonymous":true}';
+insert into public.reservations (item_id, reserved_by) values ('00000000-0000-0000-0002-0000000000a2', 'Ana');
+
+set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated","is_anonymous":false}';
+select set_config('rls.copy_a',
+  public.duplicate_list('00000000-0000-0000-0001-0000000000a1', 'Copia de A')::text, true);
+select set_config('rls.copy_slug_a', share_slug, true)
+from public.lists where id = current_setting('rls.copy_a')::uuid;
+select public._rls_check('14a: the copy is a new list of A''s with the given title and its own slug', (
+  select l.id <> '00000000-0000-0000-0001-0000000000a1'
+    and l.owner_id = '00000000-0000-0000-0000-0000000000a1'
+    and l.title = 'Copia de A'
+    and public._rls_slug_is(l.share_slug, 'copia-de-a-')
+  from public.lists l where l.id = current_setting('rls.copy_a')::uuid));
+select public._rls_check('14b: the copy has the same items in the same order, with new ids', (
+  select array_agg(row(title, subtitle, section, price, price_label, buy_link, image_link)::text order by position, created_at)
+  from public.items where list_id = current_setting('rls.copy_a')::uuid
+) = (
+  select array_agg(row(title, subtitle, section, price, price_label, buy_link, image_link)::text order by position, created_at)
+  from public.items where list_id = '00000000-0000-0000-0001-0000000000a1'
+) and not exists (
+  select 1 from public.items c join public.items s on s.id = c.id
+  where c.list_id = current_setting('rls.copy_a')::uuid
+    and s.list_id = '00000000-0000-0000-0001-0000000000a1'
+));
+with u as (
+  update public.items set title = 'Editado en la copia'
+  where list_id = current_setting('rls.copy_a')::uuid returning 1
+)
+select public._rls_check('14c: editing the copy leaves the source untouched',
+  (select count(*) from u) = 2
+  and not exists (
+    select 1 from public.items
+    where list_id = '00000000-0000-0000-0001-0000000000a1' and title = 'Editado en la copia'
+  ));
+select public._rls_check('14d: A cannot duplicate B''s list (null, nothing created)',
+  public.duplicate_list('00000000-0000-0000-0001-0000000000b1', 'Robada') is null
+  and not exists (select 1 from public.lists where title = 'Robada'));
+select public._rls_expect_error('14e: an over-long title for the copy is rejected',
+  $$select public.duplicate_list('00000000-0000-0000-0001-0000000000a1', repeat('x', 101))$$, '23514');
+
+-- Friend F2 sees the reserved source item, but every item of the copy is free.
+set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000f2","role":"authenticated","is_anonymous":true}';
+select public._rls_check('14f: reservations are not copied: the copy reaches friends with every item free',
+  jsonb_typeof(public._rls_reservation(current_setting('rls.slug_a'), '00000000-0000-0000-0002-0000000000a2')) = 'object'
+  and jsonb_array_length(public.get_list(current_setting('rls.copy_slug_a')) -> 'items') = 2
+  and not exists (
+    select 1 from jsonb_array_elements(public.get_list(current_setting('rls.copy_slug_a')) -> 'items') e
+    where jsonb_typeof(e -> 'reservation') <> 'null'
+  ));
+
+-- An anonymous session cannot duplicate (sees no lists); the anon role cannot call it at all.
+set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000f1","role":"authenticated","is_anonymous":true}';
+select public._rls_check('14g: an anonymous session cannot duplicate a list',
+  public.duplicate_list('00000000-0000-0000-0001-0000000000a1', 'Anónima') is null);
+-- F1 undoes the reservation so section 10 starts with every item of list A free.
+delete from public.reservations where item_id = '00000000-0000-0000-0002-0000000000a2';
+
+set local role anon;
+set local request.jwt.claims = '{"role":"anon"}';
+select public._rls_expect_error('14h: the anon role cannot execute duplicate_list',
+  $$select public.duplicate_list('00000000-0000-0000-0001-0000000000a1', 'Anon')$$, '42501');
+
+set local role authenticated;
+set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated","is_anonymous":false}';
+
+-- ---------------------------------------------------------------------
 -- 10. Limits: 21st list, 201st item, 11th reservation by one user in one list
 -- ---------------------------------------------------------------------
 -- Still owner A.
@@ -307,6 +377,8 @@ begin
 end $$;
 select public._rls_expect_error('10a: the 21st list hits list_limit',
   $$insert into public.lists (title) values ('Lista 21')$$, 'P0001', 'list_limit');
+select public._rls_expect_error('10e: duplicating at 20 lists hits list_limit',
+  $$select public.duplicate_list('00000000-0000-0000-0001-0000000000a1', 'Copia 21')$$, 'P0001', 'list_limit');
 
 do $$
 begin

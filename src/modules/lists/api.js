@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { toApiError } from '@/lib/errors'
+import { ApiError, toApiError } from '@/lib/errors'
 
 // Owner data only: nothing here reads or writes reservations (docs/structure.md rule 5).
 
@@ -40,6 +40,22 @@ export async function renameList(id, title) {
 
   if (error) throw toApiError(error)
   return data
+}
+
+/**
+ * Copies the list and its items (never reservations) into a new list with its own share link,
+ * in one transaction. Returns `{ id }`. Throws ApiError('list_limit') past 20 lists and
+ * ApiError('not-found') when the source is missing or not the caller's.
+ */
+export async function duplicateList(id, title) {
+  const { data, error } = await supabase.rpc('duplicate_list', {
+    p_list_id: id,
+    p_title: title.trim(),
+  })
+
+  if (error) throw toApiError(error)
+  if (!data) throw new ApiError('not-found')
+  return { id: data }
 }
 
 /** Its items and their reservations go with it (on delete cascade). */
