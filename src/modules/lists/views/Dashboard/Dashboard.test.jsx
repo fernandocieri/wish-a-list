@@ -1,19 +1,27 @@
 import { describe, expect, it, vi } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { faker } from '@faker-js/faker'
 import { ApiError } from '@/lib/errors'
 import { makeList } from '@/test/factories'
 import { useCreateList } from './hooks/useCreateList'
 import { useDeleteList } from './hooks/useDeleteList'
+import { useDuplicateList } from './hooks/useDuplicateList'
 import { useMyLists } from './hooks/useMyLists'
 import Dashboard from './Dashboard'
 
 vi.mock('./hooks/useMyLists', () => ({ useMyLists: vi.fn() }))
 vi.mock('./hooks/useCreateList', () => ({ useCreateList: vi.fn() }))
 vi.mock('./hooks/useDeleteList', () => ({ useDeleteList: vi.fn() }))
+vi.mock('./hooks/useDuplicateList', () => ({ useDuplicateList: vi.fn() }))
 
-function renderDashboard({ lists = [], query = {}, deletion = {} } = {}) {
+function renderDashboard({
+  lists = [],
+  query = {},
+  deletion = {},
+  duplication = {},
+} = {}) {
   useMyLists.mockReturnValue({
     data: lists,
     isPending: false,
@@ -33,12 +41,22 @@ function renderDashboard({ lists = [], query = {}, deletion = {} } = {}) {
     isError: false,
     ...deletion,
   })
+  const duplicateMutate = vi.fn()
+  useDuplicateList.mockReturnValue({
+    mutate: duplicateMutate,
+    isPending: false,
+    error: null,
+    ...duplication,
+  })
   render(
     <MemoryRouter>
-      <Dashboard />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/lists/:id" element={<div data-testid="editor-route" />} />
+      </Routes>
     </MemoryRouter>,
   )
-  return { deleteMutate: mutate }
+  return { deleteMutate: mutate, duplicateMutate }
 }
 
 describe('Dashboard', () => {
@@ -103,6 +121,43 @@ describe('Dashboard', () => {
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
     expect(deleteMutate).not.toHaveBeenCalled()
+  })
+
+  it('duplicates a list and opens the copy in the editor', async () => {
+    const user = userEvent.setup()
+    const list = makeList({ item_count: 3 })
+    const copy = { id: faker.string.uuid() }
+    const { duplicateMutate } = renderDashboard({ lists: [list] })
+    duplicateMutate.mockImplementation((_list, { onSuccess }) =>
+      onSuccess(copy),
+    )
+
+    await user.click(screen.getByTestId('duplicate-list'))
+
+    expect(duplicateMutate.mock.calls[0][0]).toBe(list)
+    expect(await screen.findByTestId('editor-route')).toBeInTheDocument()
+  })
+
+  it('disables duplicating while a copy is being made', () => {
+    renderDashboard({
+      lists: [makeList({ item_count: 1 })],
+      duplication: { isPending: true },
+    })
+
+    expect(screen.getByTestId('duplicate-list')).toBeDisabled()
+  })
+
+  it('shows an alert when a list cannot be duplicated', () => {
+    renderDashboard({
+      lists: [makeList({ item_count: 1 })],
+      duplication: { error: new ApiError('list_limit') },
+    })
+
+    expect(screen.getByTestId('duplicate-error')).toHaveAttribute(
+      'role',
+      'alert',
+    )
+    expect(screen.getAllByTestId('list-row')).toHaveLength(1)
   })
 
   it('shows an alert when the lists cannot be loaded', () => {

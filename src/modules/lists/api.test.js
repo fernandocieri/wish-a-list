@@ -4,9 +4,17 @@ import { supabase } from '@/lib/supabase'
 import { ApiError } from '@/lib/errors'
 import { makeList } from '@/test/factories'
 import { mockQueryBuilder } from '@/test/supabaseMock'
-import { createList, deleteList, fetchMyLists, renameList } from './api'
+import {
+  createList,
+  deleteList,
+  duplicateList,
+  fetchMyLists,
+  renameList,
+} from './api'
 
-vi.mock('@/lib/supabase', () => ({ supabase: { from: vi.fn() } }))
+vi.mock('@/lib/supabase', () => ({
+  supabase: { from: vi.fn(), rpc: vi.fn() },
+}))
 
 const dbError = { code: '42501', message: 'permission denied' }
 
@@ -79,6 +87,41 @@ describe('renameList', () => {
     await expect(
       renameList(faker.string.uuid(), faker.lorem.word()),
     ).rejects.toBeInstanceOf(ApiError)
+  })
+})
+
+describe('duplicateList', () => {
+  it('calls duplicate_list with the source id and the trimmed title', async () => {
+    const source = makeList()
+    const newId = faker.string.uuid()
+    supabase.rpc.mockResolvedValue({ data: newId, error: null })
+
+    const result = await duplicateList(source.id, `  ${source.title}  `)
+
+    expect(supabase.rpc).toHaveBeenCalledWith('duplicate_list', {
+      p_list_id: source.id,
+      p_title: source.title,
+    })
+    expect(result).toEqual({ id: newId })
+  })
+
+  it('throws "not-found" when the source is not one of the owner\'s lists', async () => {
+    supabase.rpc.mockResolvedValue({ data: null, error: null })
+
+    await expect(
+      duplicateList(faker.string.uuid(), faker.lorem.word()),
+    ).rejects.toMatchObject({ code: 'not-found' })
+  })
+
+  it('throws "list_limit" when the owner already has 20 lists', async () => {
+    supabase.rpc.mockResolvedValue({
+      data: null,
+      error: { code: 'P0001', message: 'list_limit' },
+    })
+
+    await expect(
+      duplicateList(faker.string.uuid(), faker.lorem.word()),
+    ).rejects.toMatchObject({ code: 'list_limit' })
   })
 })
 
